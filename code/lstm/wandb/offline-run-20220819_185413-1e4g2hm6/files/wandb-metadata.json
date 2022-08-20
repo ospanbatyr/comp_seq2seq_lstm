@@ -1,0 +1,42 @@
+{
+    "os": "macOS-12.4-arm64-arm-64bit",
+    "python": "3.8.5",
+    "heartbeatAt": "2022-08-19T15:54:13.614944",
+    "startedAt": "2022-08-19T15:54:13.569700",
+    "docker": null,
+    "cpu_count": 10,
+    "cuda": null,
+    "args": [
+        "-mode",
+        "test",
+        "-project_name",
+        "test_runs",
+        "-pretrained_model_name",
+        "RUN-train_try",
+        "-finetune_data_voc",
+        "none",
+        "-no-dev_set",
+        "-no-test_set",
+        "-gen_set",
+        "-dataset",
+        "simple_split_tsv",
+        "-beam_decode",
+        "-batch_size",
+        "1024",
+        "-run_name",
+        "RUN-test_try",
+        "-gpu",
+        "1"
+    ],
+    "state": "running",
+    "program": "-m src.main",
+    "git": {
+        "remote": null,
+        "commit": null
+    },
+    "email": "osmanbaturince@outlook.com",
+    "root": "/Users/obi/Desktop/Compositional-Generalization-Seq2Seq-main",
+    "host": "Osman-MacBook-Pro.local",
+    "username": "obi",
+    "executable": "/Users/obi/anaconda3/envs/seq2seq_lstm/bin/python"
+}

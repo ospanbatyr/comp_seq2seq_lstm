@@ -1,0 +1,29 @@
+2022-08-19 19:20:38,055 | DEBUG | main.py: 159 : main() ::	 Created Relevant Directories
+2022-08-19 19:20:38,055 | INFO | main.py: 160 : main() ::	 Experiment Name: RUN-test_try
+2022-08-19 19:20:38,055 | DEBUG | main.py: 93 : load_data() ::	 Loading Test Data...
+2022-08-19 19:20:38,068 | INFO | main.py: 100 : load_data() ::	 Test Data Loaded...
+2022-08-19 19:20:38,068 | INFO | main.py: 214 : main() ::	 Loading Vocab File...
+2022-08-19 19:20:38,069 | INFO | main.py: 226 : main() ::	 Vocab Files loaded from models/RUN-train_try/vocab1.p
+Number of words in voc1: 16
+Number of words in voc2: 9
+2022-08-19 19:20:38,070 | DEBUG | modelv2.py: 62 : __init__() ::	 Building Encoders...
+2022-08-19 19:20:38,072 | DEBUG | modelv2.py: 72 : __init__() ::	 Encoders Built...
+2022-08-19 19:20:38,073 | DEBUG | modelv2.py: 86 : __init__() ::	 Decoder RNN Built...
+2022-08-19 19:20:38,073 | DEBUG | modelv2.py: 111 : __init__() ::	 Initalizing Optimizer and Criterion...
+2022-08-19 19:20:38,074 | INFO | modelv2.py: 117 : __init__() ::	 All Model Components Initialized...
+2022-08-19 19:20:38,074 | INFO | main.py: 283 : main() ::	 Initialized Model
+2022-08-19 19:20:38,074 | DEBUG | helper.py: 67 : get_latest_checkpoint() ::	 Checkpoint found at : models/RUN-train_try/model.pt
+2022-08-19 19:20:38,078 | INFO | helper.py: 103 : load_checkpoint() ::	 Successfully Loaded Checkpoint from models/RUN-train_try/model.pt, with epoch number: 88 for test
+2022-08-19 19:20:38,078 | INFO | main.py: 289 : main() ::	 Prediction from
+2022-08-19 19:20:38,078 | INFO | logger.py: 34 : print_log() ::	 
+ epoch: 88	
+ min train loss: 5.1162482419061725e-05	
+ min val loss: inf	
+ min test loss: inf	
+ min gen loss: inf	
+ max train acc: 1.0	
+ max val acc: 0.0	
+ max test acc: 0.0	
+ max gen acc: 0.0	
+ best epoch: 88	
+2022-08-19 19:21:04,697 | INFO | main.py: 305 : main() ::	 Accuracy: 0.7577714012434242

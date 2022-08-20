@@ -1,0 +1,3 @@
+# python -m src.main -mode test -project_name test_runs -pretrained_model_name RUN-train_try -finetune_data_voc none -no-dev_set -no-test_set -gen_set -dataset add_jump_100_prims_controlled -batch_size 1024 -run_name RUN-test_try -gpu 1
+# python -m src.main -mode test -project_name test_runs -pretrained_model_name RUN-train_try -finetune_data_voc none -no-dev_set -no-test_set -gen_set -dataset simple_split_tsv -batch_size 1024 -run_name RUN-test_try -gpu 1
+python -m src.main -mode test -project_name test_runs -pretrained_model_name RUN-train_try -finetune_data_voc none -no-dev_set -no-test_set -gen_set -dataset simple_split_tsv -beam_decode -batch_size 1024 -run_name RUN-test_try -gpu 1

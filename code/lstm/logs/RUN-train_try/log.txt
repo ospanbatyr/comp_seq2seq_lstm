@@ -1,0 +1,3498 @@
+2022-08-17 22:20:43,224 | DEBUG | main.py: 159 : main() ::	 Created Relevant Directories
+2022-08-17 22:20:43,224 | INFO | main.py: 160 : main() ::	 Experiment Name: RUN-train_try
+2022-08-17 22:20:43,224 | DEBUG | main.py: 49 : load_data() ::	 Loading Training Data...
+2022-08-17 22:20:43,299 | INFO | main.py: 88 : load_data() ::	 All Data Loaded:
+Train Size: 16896
+Val Size: 0
+Test Size: 0
+Gen Size: 0
+2022-08-17 22:20:43,299 | DEBUG | main.py: 167 : main() ::	 Creating Vocab...
+2022-08-17 22:20:52,884 | INFO | main.py: 186 : main() ::	 Input Vocab Created with number of words : 16
+2022-08-17 22:20:52,885 | INFO | main.py: 187 : main() ::	 Output Vocab Created with number of words : 9
+2022-08-17 22:20:52,885 | INFO | main.py: 194 : main() ::	 Vocab saved at models/RUN-train_try/vocab1.p
+2022-08-17 22:20:52,886 | DEBUG | modelv2.py: 56 : __init__() ::	 Building Encoders...
+2022-08-17 22:20:52,889 | DEBUG | modelv2.py: 66 : __init__() ::	 Encoders Built...
+2022-08-17 22:20:52,890 | DEBUG | modelv2.py: 80 : __init__() ::	 Decoder RNN Built...
+2022-08-17 22:20:52,890 | DEBUG | modelv2.py: 105 : __init__() ::	 Initalizing Optimizer and Criterion...
+2022-08-17 22:20:52,891 | INFO | modelv2.py: 111 : __init__() ::	 All Model Components Initialized...
+2022-08-17 22:20:52,891 | INFO | main.py: 231 : main() ::	 Initialized Model
+2022-08-17 22:20:52,891 | DEBUG | main.py: 251 : main() ::	 Config File Saved
+2022-08-17 22:20:52,891 | INFO | main.py: 253 : main() ::	 Starting Training Procedure
+2022-08-17 22:20:52,891 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 1	
+2022-08-17 22:21:32,662 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 1 completed...
+Time Taken: 0.6628380298614502
+2022-08-17 22:21:32,662 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:21:32,670 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 1	
+ best epoch: 1	
+ train loss epoch: 0.7666685941431322	
+ min train loss: 0.7666685941431322	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 5.9780009564801534e-05	
+ max train acc: 5.9780009564801534e-05	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:21:32,670 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 2	
+2022-08-17 22:22:17,612 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 2 completed...
+Time Taken: 0.7490311662356058
+2022-08-17 22:22:17,612 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:22:17,618 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 2	
+ best epoch: 2	
+ train loss epoch: 0.23388226118710198	
+ min train loss: 0.23388226118710198	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.07077953132472502	
+ max train acc: 0.07077953132472502	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:22:17,619 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 3	
+2022-08-17 22:23:01,425 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 3 completed...
+Time Taken: 0.7301055630048116
+2022-08-17 22:23:01,425 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:23:01,433 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 3	
+ best epoch: 3	
+ train loss epoch: 0.08773786307571574	
+ min train loss: 0.08773786307571574	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.37619560019129605	
+ max train acc: 0.37619560019129605	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:23:01,433 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 4	
+2022-08-17 22:23:41,612 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 4 completed...
+Time Taken: 0.6696561694145202
+2022-08-17 22:23:41,613 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:23:41,622 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 4	
+ best epoch: 4	
+ train loss epoch: 0.05305345794011944	
+ min train loss: 0.05305345794011944	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.5830344332855093	
+ max train acc: 0.5830344332855093	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:23:41,622 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 5	
+2022-08-17 22:24:21,948 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 5 completed...
+Time Taken: 0.672089950243632
+2022-08-17 22:24:21,948 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:24:21,955 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 5	
+ best epoch: 5	
+ train loss epoch: 0.03158785573591281	
+ min train loss: 0.03158785573591281	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.7299736967957915	
+ max train acc: 0.7299736967957915	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:24:21,955 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 6	
+2022-08-17 22:25:01,819 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 6 completed...
+Time Taken: 0.6643933693567912
+2022-08-17 22:25:01,820 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:25:01,826 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 6	
+ best epoch: 6	
+ train loss epoch: 0.019356763068264216	
+ min train loss: 0.019356763068264216	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.8114538498326159	
+ max train acc: 0.8114538498326159	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:25:01,826 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 7	
+2022-08-17 22:25:41,661 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 7 completed...
+Time Taken: 0.6639277656873067
+2022-08-17 22:25:41,662 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:25:41,670 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 7	
+ best epoch: 7	
+ train loss epoch: 0.017864547189851702	
+ min train loss: 0.017864547189851702	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.8578431372549019	
+ max train acc: 0.8578431372549019	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:25:41,670 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 8	
+2022-08-17 22:26:21,663 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 8 completed...
+Time Taken: 0.6665558973948161
+2022-08-17 22:26:21,664 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:26:21,670 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 8	
+ best epoch: 8	
+ train loss epoch: 0.014173648605490058	
+ min train loss: 0.014173648605490058	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.8972381635581061	
+ max train acc: 0.8972381635581061	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:26:21,670 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 9	
+2022-08-17 22:27:01,737 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 9 completed...
+Time Taken: 0.6677867650985718
+2022-08-17 22:27:01,738 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:27:01,745 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 9	
+ best epoch: 9	
+ train loss epoch: 0.011010889188074994	
+ min train loss: 0.011010889188074994	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9065638450502153	
+ max train acc: 0.9065638450502153	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:27:01,745 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 10	
+2022-08-17 22:27:41,947 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 10 completed...
+Time Taken: 0.6700334191322327
+2022-08-17 22:27:41,948 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:27:41,953 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 10	
+ best epoch: 10	
+ train loss epoch: 0.00876653402019274	
+ min train loss: 0.00876653402019274	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9261716881874701	
+ max train acc: 0.9261716881874701	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:27:41,954 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 11	
+2022-08-17 22:28:22,021 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 11 completed...
+Time Taken: 0.6677905996640523
+2022-08-17 22:28:22,021 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:28:22,027 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 11	
+ best epoch: 11	
+ train loss epoch: 0.00715811512631084	
+ min train loss: 0.00715811512631084	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9512195121951219	
+ max train acc: 0.9512195121951219	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:28:22,027 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 12	
+2022-08-17 22:29:02,085 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 12 completed...
+Time Taken: 0.6676250139872233
+2022-08-17 22:29:02,086 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:29:02,093 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 12	
+ best epoch: 12	
+ train loss epoch: 0.005041096948542419	
+ min train loss: 0.005041096948542419	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9686154949784792	
+ max train acc: 0.9686154949784792	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:29:02,093 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 13	
+2022-08-17 22:29:42,113 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 13 completed...
+Time Taken: 0.6669999480247497
+2022-08-17 22:29:42,113 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 13	
+ best epoch: 12	
+ train loss epoch: 0.004647577057473179	
+ min train loss: 0.004647577057473179	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9561214729794357	
+ max train acc: 0.9686154949784792	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:29:42,113 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 14	
+2022-08-17 22:30:21,957 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 14 completed...
+Time Taken: 0.6640601515769958
+2022-08-17 22:30:21,957 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:30:21,964 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 14	
+ best epoch: 14	
+ train loss epoch: 0.004781143228870412	
+ min train loss: 0.004647577057473179	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9702893352462937	
+ max train acc: 0.9702893352462937	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:30:21,965 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 15	
+2022-08-17 22:31:02,314 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 15 completed...
+Time Taken: 0.6724792997042338
+2022-08-17 22:31:02,314 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:31:02,321 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 15	
+ best epoch: 15	
+ train loss epoch: 0.002188423123572794	
+ min train loss: 0.002188423123572794	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9839191774270684	
+ max train acc: 0.9839191774270684	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:31:02,321 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 16	
+2022-08-17 22:31:42,162 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 16 completed...
+Time Taken: 0.6640158812204997
+2022-08-17 22:31:42,162 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 16	
+ best epoch: 15	
+ train loss epoch: 0.005111784871611938	
+ min train loss: 0.002188423123572794	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9634744141559063	
+ max train acc: 0.9839191774270684	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:31:42,163 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 17	
+2022-08-17 22:32:22,412 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 17 completed...
+Time Taken: 0.6708246827125549
+2022-08-17 22:32:22,412 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 17	
+ best epoch: 15	
+ train loss epoch: 0.004039501657668144	
+ min train loss: 0.002188423123572794	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9691535150645624	
+ max train acc: 0.9839191774270684	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:32:22,412 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 18	
+2022-08-17 22:33:02,618 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 18 completed...
+Time Taken: 0.6700888832410177
+2022-08-17 22:33:02,618 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 18	
+ best epoch: 15	
+ train loss epoch: 0.003357529287757948	
+ min train loss: 0.002188423123572794	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9775824964131994	
+ max train acc: 0.9839191774270684	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:33:02,618 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 19	
+2022-08-17 22:33:42,898 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 19 completed...
+Time Taken: 0.6713273644447326
+2022-08-17 22:33:42,898 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 19	
+ best epoch: 15	
+ train loss epoch: 0.002603796677809708	
+ min train loss: 0.002188423123572794	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.982544237207078	
+ max train acc: 0.9839191774270684	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:33:42,898 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 20	
+2022-08-17 22:34:23,224 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 20 completed...
+Time Taken: 0.6720918814341227
+2022-08-17 22:34:23,224 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:34:23,230 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 20	
+ best epoch: 20	
+ train loss epoch: 0.002101703939520513	
+ min train loss: 0.002101703939520513	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9854734576757532	
+ max train acc: 0.9854734576757532	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:34:23,230 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 21	
+2022-08-17 22:35:03,190 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 21 completed...
+Time Taken: 0.6659923513730367
+2022-08-17 22:35:03,190 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 21	
+ best epoch: 20	
+ train loss epoch: 0.0020121743986766163	
+ min train loss: 0.0020121743986766163	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9854136776661885	
+ max train acc: 0.9854734576757532	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:35:03,190 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 22	
+2022-08-17 22:35:43,466 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 22 completed...
+Time Taken: 0.6712625662485758
+2022-08-17 22:35:43,467 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:35:43,474 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 22	
+ best epoch: 22	
+ train loss epoch: 0.00214104647998854	
+ min train loss: 0.0020121743986766163	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9880439980870397	
+ max train acc: 0.9880439980870397	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:35:43,474 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 23	
+2022-08-17 22:36:23,572 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 23 completed...
+Time Taken: 0.6683005015055339
+2022-08-17 22:36:23,573 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 23	
+ best epoch: 22	
+ train loss epoch: 0.0030600983694644155	
+ min train loss: 0.0020121743986766163	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9770444763271162	
+ max train acc: 0.9880439980870397	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:36:23,573 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 24	
+2022-08-17 22:37:03,852 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 24 completed...
+Time Taken: 0.6713234186172485
+2022-08-17 22:37:03,852 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 24	
+ best epoch: 22	
+ train loss epoch: 0.0017232785497506879	
+ min train loss: 0.0017232785497506879	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9876853180296509	
+ max train acc: 0.9880439980870397	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:37:03,853 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 25	
+2022-08-17 22:37:44,055 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 25 completed...
+Time Taken: 0.6700453162193298
+2022-08-17 22:37:44,056 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:37:44,062 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 25	
+ best epoch: 25	
+ train loss epoch: 0.0011924681065771763	
+ min train loss: 0.0011924681065771763	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9933046389287422	
+ max train acc: 0.9933046389287422	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:37:44,062 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 26	
+2022-08-17 22:38:24,290 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 26 completed...
+Time Taken: 0.6704559803009034
+2022-08-17 22:38:24,290 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:38:24,298 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 26	
+ best epoch: 26	
+ train loss epoch: 0.0011295879963094558	
+ min train loss: 0.0011295879963094558	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9940219990435198	
+ max train acc: 0.9940219990435198	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:38:24,298 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 27	
+2022-08-17 22:39:04,564 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 27 completed...
+Time Taken: 0.6710969646771748
+2022-08-17 22:39:04,564 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 27	
+ best epoch: 26	
+ train loss epoch: 0.0029722622160936038	
+ min train loss: 0.0011295879963094558	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9821855571496891	
+ max train acc: 0.9940219990435198	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:39:04,564 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 28	
+2022-08-17 22:39:45,137 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 28 completed...
+Time Taken: 0.676205837726593
+2022-08-17 22:39:45,137 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 28	
+ best epoch: 26	
+ train loss epoch: 0.001784525604411953	
+ min train loss: 0.0011295879963094558	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9867886178861789	
+ max train acc: 0.9940219990435198	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:39:45,137 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 29	
+2022-08-17 22:40:25,582 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 29 completed...
+Time Taken: 0.6740773518880209
+2022-08-17 22:40:25,582 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:40:25,588 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 29	
+ best epoch: 29	
+ train loss epoch: 0.0007930530658051058	
+ min train loss: 0.0007930530658051058	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9959947393591583	
+ max train acc: 0.9959947393591583	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:40:25,588 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 30	
+2022-08-17 22:41:05,893 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 30 completed...
+Time Taken: 0.6717365821202596
+2022-08-17 22:41:05,893 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 30	
+ best epoch: 29	
+ train loss epoch: 0.002706025463643548	
+ min train loss: 0.0007930530658051058	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9808106169296987	
+ max train acc: 0.9959947393591583	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:41:05,893 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 31	
+2022-08-17 22:41:46,267 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 31 completed...
+Time Taken: 0.6728947321573894
+2022-08-17 22:41:46,267 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 31	
+ best epoch: 29	
+ train loss epoch: 0.001975929912746351	
+ min train loss: 0.0007930530658051058	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9887015781922525	
+ max train acc: 0.9959947393591583	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:41:46,267 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 32	
+2022-08-17 22:42:26,500 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 32 completed...
+Time Taken: 0.6705361008644104
+2022-08-17 22:42:26,500 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 32	
+ best epoch: 29	
+ train loss epoch: 0.0019363636365402775	
+ min train loss: 0.0007930530658051058	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9892395982783357	
+ max train acc: 0.9959947393591583	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:42:26,500 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 33	
+2022-08-17 22:43:06,912 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 33 completed...
+Time Taken: 0.6735385298728943
+2022-08-17 22:43:06,913 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 33	
+ best epoch: 29	
+ train loss epoch: 0.0018057996487195213	
+ min train loss: 0.0007930530658051058	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9832018173122907	
+ max train acc: 0.9959947393591583	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:43:06,913 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 34	
+2022-08-17 22:43:46,730 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 34 completed...
+Time Taken: 0.6636178811391195
+2022-08-17 22:43:46,730 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 34	
+ best epoch: 29	
+ train loss epoch: 0.0015043315350683518	
+ min train loss: 0.0007930530658051058	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.989478718316595	
+ max train acc: 0.9959947393591583	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:43:46,730 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 35	
+2022-08-17 22:44:27,206 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 35 completed...
+Time Taken: 0.6745932857195537
+2022-08-17 22:44:27,206 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 35	
+ best epoch: 29	
+ train loss epoch: 0.0007534466514814173	
+ min train loss: 0.0007534466514814173	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9953371592539455	
+ max train acc: 0.9959947393591583	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:44:27,206 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 36	
+2022-08-17 22:45:07,177 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 36 completed...
+Time Taken: 0.666175917784373
+2022-08-17 22:45:07,177 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 36	
+ best epoch: 29	
+ train loss epoch: 0.0017012817923725977	
+ min train loss: 0.0007534466514814173	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9868483978957436	
+ max train acc: 0.9959947393591583	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:45:07,177 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 37	
+2022-08-17 22:45:48,076 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 37 completed...
+Time Taken: 0.6816493511199951
+2022-08-17 22:45:48,077 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 37	
+ best epoch: 29	
+ train loss epoch: 0.002299710353858472	
+ min train loss: 0.0007534466514814173	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9891200382592061	
+ max train acc: 0.9959947393591583	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:45:48,077 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 38	
+2022-08-17 22:46:30,419 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 38 completed...
+Time Taken: 0.7057022333145142
+2022-08-17 22:46:30,426 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:46:30,521 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 38	
+ best epoch: 38	
+ train loss epoch: 0.0009458167702925916	
+ min train loss: 0.0007534466514814173	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9960545193687231	
+ max train acc: 0.9960545193687231	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:46:30,521 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 39	
+2022-08-17 22:47:11,585 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 39 completed...
+Time Taken: 0.6843895514806112
+2022-08-17 22:47:11,585 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:47:11,591 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 39	
+ best epoch: 39	
+ train loss epoch: 0.0009539093767939317	
+ min train loss: 0.0007534466514814173	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9991630798660928	
+ max train acc: 0.9991630798660928	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:47:11,592 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 40	
+2022-08-17 22:47:52,406 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 40 completed...
+Time Taken: 0.6802323023478191
+2022-08-17 22:47:52,406 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 40	
+ best epoch: 39	
+ train loss epoch: 0.0010296994535848238	
+ min train loss: 0.0007534466514814173	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9986848397895743	
+ max train acc: 0.9991630798660928	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:47:52,406 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 41	
+2022-08-17 22:48:34,149 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 41 completed...
+Time Taken: 0.6957147280375163
+2022-08-17 22:48:34,149 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 22:48:34,155 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 41	
+ best epoch: 41	
+ train loss epoch: 0.00024277989646410864	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9996413199426112	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:48:34,155 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 42	
+2022-08-17 22:49:16,117 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 42 completed...
+Time Taken: 0.6993669509887696
+2022-08-17 22:49:16,118 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 42	
+ best epoch: 41	
+ train loss epoch: 0.0018094632445129957	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9833811573409852	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:49:16,118 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 43	
+2022-08-17 22:49:57,922 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 43 completed...
+Time Taken: 0.6967385331789653
+2022-08-17 22:49:57,922 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 43	
+ best epoch: 41	
+ train loss epoch: 0.0034682976139998535	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9824844571975132	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:49:57,923 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 44	
+2022-08-17 22:50:38,873 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 44 completed...
+Time Taken: 0.6825079520543417
+2022-08-17 22:50:38,873 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 44	
+ best epoch: 41	
+ train loss epoch: 0.001989011216234346	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9918101386896222	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:50:38,874 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 45	
+2022-08-17 22:51:20,177 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 45 completed...
+Time Taken: 0.6883868495623271
+2022-08-17 22:51:20,177 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 45	
+ best epoch: 41	
+ train loss epoch: 0.000719095331522566	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9980272596843616	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:51:20,177 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 46	
+2022-08-17 22:52:01,374 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 46 completed...
+Time Taken: 0.6866090695063273
+2022-08-17 22:52:01,374 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 46	
+ best epoch: 41	
+ train loss epoch: 0.0010180476386074091	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9939024390243902	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:52:01,374 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 47	
+2022-08-17 22:52:42,157 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 47 completed...
+Time Taken: 0.6797050992647807
+2022-08-17 22:52:42,157 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 47	
+ best epoch: 41	
+ train loss epoch: 0.001920827499272198	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9924079387852702	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:52:42,157 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 48	
+2022-08-17 22:53:23,957 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 48 completed...
+Time Taken: 0.6966578483581543
+2022-08-17 22:53:23,957 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 48	
+ best epoch: 41	
+ train loss epoch: 0.0013094346558669369	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9953969392635102	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:53:23,957 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 49	
+2022-08-17 22:54:05,788 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 49 completed...
+Time Taken: 0.697185202439626
+2022-08-17 22:54:05,789 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 49	
+ best epoch: 41	
+ train loss epoch: 0.0011741690464898583	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9974892395982783	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:54:05,789 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 50	
+2022-08-17 22:54:49,069 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 50 completed...
+Time Taken: 0.7213405172030131
+2022-08-17 22:54:49,070 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 50	
+ best epoch: 41	
+ train loss epoch: 0.00046424357189963017	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.998804399808704	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:54:49,070 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 51	
+2022-08-17 22:55:31,162 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 51 completed...
+Time Taken: 0.7015316367149353
+2022-08-17 22:55:31,162 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 51	
+ best epoch: 41	
+ train loss epoch: 0.0003339859022331303	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9993424198947872	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:55:31,162 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 52	
+2022-08-17 22:56:12,386 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 52 completed...
+Time Taken: 0.6870650847752889
+2022-08-17 22:56:12,386 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 52	
+ best epoch: 41	
+ train loss epoch: 0.0013507979684481213	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9978479196556671	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:56:12,386 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 53	
+2022-08-17 22:56:53,590 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 53 completed...
+Time Taken: 0.6867270191510518
+2022-08-17 22:56:53,590 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 53	
+ best epoch: 41	
+ train loss epoch: 0.002466844556551541	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9842778574844572	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:56:53,591 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 54	
+2022-08-17 22:57:34,864 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 54 completed...
+Time Taken: 0.6878839333852133
+2022-08-17 22:57:34,864 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 54	
+ best epoch: 41	
+ train loss epoch: 0.0004245353322157943	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9986848397895743	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:57:34,864 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 55	
+2022-08-17 22:58:17,482 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 55 completed...
+Time Taken: 0.7102971037228902
+2022-08-17 22:58:17,482 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 55	
+ best epoch: 41	
+ train loss epoch: 0.000344291375801073	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9989239598278336	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:58:17,482 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 56	
+2022-08-17 22:58:59,216 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 56 completed...
+Time Taken: 0.6955567002296448
+2022-08-17 22:58:59,216 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 56	
+ best epoch: 41	
+ train loss epoch: 0.00036693355187331783	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9992228598756576	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:58:59,216 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 57	
+2022-08-17 22:59:40,355 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 57 completed...
+Time Taken: 0.6856479644775391
+2022-08-17 22:59:40,356 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 57	
+ best epoch: 41	
+ train loss epoch: 0.0007750492838277745	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9992228598756576	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 22:59:40,356 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 58	
+2022-08-17 23:00:21,856 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 58 completed...
+Time Taken: 0.6916619698206584
+2022-08-17 23:00:21,856 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 58	
+ best epoch: 41	
+ train loss epoch: 0.0003045234191352563	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.998804399808704	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:00:21,856 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 59	
+2022-08-17 23:01:03,163 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 59 completed...
+Time Taken: 0.6884570002555848
+2022-08-17 23:01:03,164 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 59	
+ best epoch: 41	
+ train loss epoch: 0.0013187172386570462	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9925872788139646	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:01:03,164 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 60	
+2022-08-17 23:01:44,668 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 60 completed...
+Time Taken: 0.6917351325352986
+2022-08-17 23:01:44,668 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 60	
+ best epoch: 41	
+ train loss epoch: 0.0008524722261052158	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9953371592539455	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:01:44,668 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 61	
+2022-08-17 23:02:26,165 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 61 completed...
+Time Taken: 0.6916164875030517
+2022-08-17 23:02:26,166 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 61	
+ best epoch: 41	
+ train loss epoch: 0.0003318208934629547	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9988641798182688	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:02:26,166 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 62	
+2022-08-17 23:03:07,789 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 62 completed...
+Time Taken: 0.6937251488367716
+2022-08-17 23:03:07,790 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 62	
+ best epoch: 41	
+ train loss epoch: 0.0020159326379412226	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9943208990913438	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:03:07,790 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 63	
+2022-08-17 23:03:49,541 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 63 completed...
+Time Taken: 0.6958422501881917
+2022-08-17 23:03:49,541 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 63	
+ best epoch: 41	
+ train loss epoch: 0.0016950157920409212	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9946197991391679	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:03:49,541 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 64	
+2022-08-17 23:04:31,350 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 64 completed...
+Time Taken: 0.6968117475509643
+2022-08-17 23:04:31,350 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 64	
+ best epoch: 41	
+ train loss epoch: 0.0005221518189326998	
+ min train loss: 0.00024277989646410864	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.99850549976088	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:04:31,350 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 65	
+2022-08-17 23:05:12,634 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 65 completed...
+Time Taken: 0.6880707303682964
+2022-08-17 23:05:12,635 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 65	
+ best epoch: 41	
+ train loss epoch: 0.00016716439266327627	
+ min train loss: 0.00016716439266327627	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9995217599234816	
+ max train acc: 0.9996413199426112	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:05:12,635 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 66	
+2022-08-17 23:05:54,354 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 66 completed...
+Time Taken: 0.695314900080363
+2022-08-17 23:05:54,354 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 23:05:54,361 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 66	
+ best epoch: 66	
+ train loss epoch: 0.00012608792470544073	
+ min train loss: 0.00012608792470544073	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.999701099952176	
+ max train acc: 0.999701099952176	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:05:54,362 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 67	
+2022-08-17 23:06:35,855 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 67 completed...
+Time Taken: 0.6915464520454406
+2022-08-17 23:06:35,855 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 23:06:35,861 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 67	
+ best epoch: 67	
+ train loss epoch: 6.42952177769079e-05	
+ min train loss: 6.42952177769079e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998804399808704	
+ max train acc: 0.9998804399808704	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:06:35,861 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 68	
+2022-08-17 23:07:16,893 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 68 completed...
+Time Taken: 0.6838689843813578
+2022-08-17 23:07:16,894 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 23:07:16,900 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 68	
+ best epoch: 68	
+ train loss epoch: 5.7549163391295754e-05	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9999402199904353	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:07:16,901 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 69	
+2022-08-17 23:07:57,841 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 69 completed...
+Time Taken: 0.6823361317316691
+2022-08-17 23:07:57,841 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 69	
+ best epoch: 68	
+ train loss epoch: 0.00013134248850825666	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998206599713056	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:07:57,841 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 70	
+2022-08-17 23:08:39,380 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 70 completed...
+Time Taken: 0.6923152804374695
+2022-08-17 23:08:39,381 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 70	
+ best epoch: 68	
+ train loss epoch: 0.00019710641222642499	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9994619799139168	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:08:39,381 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 71	
+2022-08-17 23:09:20,691 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 71 completed...
+Time Taken: 0.6885118166605632
+2022-08-17 23:09:20,692 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 71	
+ best epoch: 68	
+ train loss epoch: 0.00013650704703328524	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9992826398852224	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:09:20,692 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 72	
+2022-08-17 23:10:02,263 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 72 completed...
+Time Taken: 0.6928545157114665
+2022-08-17 23:10:02,263 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 72	
+ best epoch: 68	
+ train loss epoch: 0.0005384177764272564	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9989837398373984	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:10:02,264 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 73	
+2022-08-17 23:10:42,862 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 73 completed...
+Time Taken: 0.6766335805257161
+2022-08-17 23:10:42,862 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 73	
+ best epoch: 68	
+ train loss epoch: 0.00048432186406101644	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.999103299856528	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:10:42,862 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 74	
+2022-08-17 23:11:24,820 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 74 completed...
+Time Taken: 0.6992970665295919
+2022-08-17 23:11:24,820 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 74	
+ best epoch: 68	
+ train loss epoch: 0.0018096546862596003	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9965327594452416	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:11:24,820 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 75	
+2022-08-17 23:12:05,876 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 75 completed...
+Time Taken: 0.6842584490776062
+2022-08-17 23:12:05,876 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 75	
+ best epoch: 68	
+ train loss epoch: 0.0017403138707429843	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9959947393591583	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:12:05,876 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 76	
+2022-08-17 23:12:46,772 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 76 completed...
+Time Taken: 0.6815965652465821
+2022-08-17 23:12:46,773 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 76	
+ best epoch: 68	
+ train loss epoch: 0.00247146401386251	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9959947393591583	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:12:46,773 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 77	
+2022-08-17 23:13:27,563 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 77 completed...
+Time Taken: 0.6798409660657246
+2022-08-17 23:13:27,564 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 77	
+ best epoch: 68	
+ train loss epoch: 0.002046734061772638	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9934241989478718	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:13:27,564 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 78	
+2022-08-17 23:14:08,658 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 78 completed...
+Time Taken: 0.6848993341128031
+2022-08-17 23:14:08,658 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 78	
+ best epoch: 68	
+ train loss epoch: 0.0007629225213955648	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9987446197991392	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:14:08,658 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 79	
+2022-08-17 23:14:49,783 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 79 completed...
+Time Taken: 0.6854145844777425
+2022-08-17 23:14:49,783 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 79	
+ best epoch: 68	
+ train loss epoch: 0.0016109800498038363	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9939622190339551	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:14:49,784 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 80	
+2022-08-17 23:15:31,130 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 80 completed...
+Time Taken: 0.6891017158826193
+2022-08-17 23:15:31,130 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 80	
+ best epoch: 68	
+ train loss epoch: 0.003313928804397936	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.984636537541846	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:15:31,130 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 81	
+2022-08-17 23:16:12,089 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 81 completed...
+Time Taken: 0.6826494336128235
+2022-08-17 23:16:12,090 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 81	
+ best epoch: 68	
+ train loss epoch: 0.0020712602574337563	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9933046389287422	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:16:12,090 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 82	
+2022-08-17 23:16:54,174 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 82 completed...
+Time Taken: 0.7014025489489237
+2022-08-17 23:16:54,174 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 82	
+ best epoch: 68	
+ train loss epoch: 0.00046247398955800295	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9984457197513151	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:16:54,174 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 83	
+2022-08-17 23:17:35,367 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 83 completed...
+Time Taken: 0.6865442514419555
+2022-08-17 23:17:35,367 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 83	
+ best epoch: 68	
+ train loss epoch: 0.00038370849406571317	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.999701099952176	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:17:35,367 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 84	
+2022-08-17 23:18:16,901 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 84 completed...
+Time Taken: 0.6922302365303039
+2022-08-17 23:18:16,902 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 84	
+ best epoch: 68	
+ train loss epoch: 0.00022202912062846365	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998804399808704	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:18:16,902 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 85	
+2022-08-17 23:18:57,888 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 85 completed...
+Time Taken: 0.6831066489219666
+2022-08-17 23:18:57,888 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 85	
+ best epoch: 68	
+ train loss epoch: 0.000890211094503097	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9995217599234816	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:18:57,889 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 86	
+2022-08-17 23:19:39,235 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 86 completed...
+Time Taken: 0.6891046643257142
+2022-08-17 23:19:39,235 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 86	
+ best epoch: 68	
+ train loss epoch: 0.0001059818669466803	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998206599713056	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:19:39,235 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 87	
+2022-08-17 23:20:20,197 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 87 completed...
+Time Taken: 0.6826848347981771
+2022-08-17 23:20:20,197 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 87	
+ best epoch: 68	
+ train loss epoch: 0.00011410798672835202	
+ min train loss: 5.7549163391295754e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998206599713056	
+ max train acc: 0.9999402199904353	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:20:20,197 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 88	
+2022-08-17 23:21:01,552 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 88 completed...
+Time Taken: 0.6892562468846639
+2022-08-17 23:21:01,553 | INFO | helper.py: 40 : save_checkpoint() ::	 Saving Checkpoint at : models/RUN-train_try/model.pt
+2022-08-17 23:21:01,559 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 88	
+ best epoch: 88	
+ train loss epoch: 5.1162482419061725e-05	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 1.0	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:21:01,559 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 89	
+2022-08-17 23:21:42,439 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 89 completed...
+Time Taken: 0.6813339710235595
+2022-08-17 23:21:42,439 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 89	
+ best epoch: 88	
+ train loss epoch: 0.00011474874474123092	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9996413199426112	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:21:42,439 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 90	
+2022-08-17 23:22:23,171 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 90 completed...
+Time Taken: 0.6788514018058777
+2022-08-17 23:22:23,171 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 90	
+ best epoch: 88	
+ train loss epoch: 0.00019990551471154967	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998206599713056	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:22:23,171 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 91	
+2022-08-17 23:23:03,841 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 91 completed...
+Time Taken: 0.6778247356414795
+2022-08-17 23:23:03,841 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 91	
+ best epoch: 88	
+ train loss epoch: 0.0007985350218367927	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.999402199904352	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:23:03,841 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 92	
+2022-08-17 23:23:44,236 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 92 completed...
+Time Taken: 0.6732436378796895
+2022-08-17 23:23:44,236 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 92	
+ best epoch: 88	
+ train loss epoch: 0.0002436578052259342	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9995217599234816	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:23:44,236 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 93	
+2022-08-17 23:24:25,279 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 93 completed...
+Time Taken: 0.6840370853741964
+2022-08-17 23:24:25,279 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 93	
+ best epoch: 88	
+ train loss epoch: 0.00025049475247821584	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9995217599234816	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:24:25,279 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 94	
+2022-08-17 23:25:05,835 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 94 completed...
+Time Taken: 0.6759337504704793
+2022-08-17 23:25:05,836 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 94	
+ best epoch: 88	
+ train loss epoch: 0.0005789488062486469	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9984457197513151	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:25:05,836 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 95	
+2022-08-17 23:25:46,446 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 95 completed...
+Time Taken: 0.6768363316853842
+2022-08-17 23:25:46,446 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 95	
+ best epoch: 88	
+ train loss epoch: 0.0020614268708176943	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9967120994739359	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:25:46,446 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 96	
+2022-08-17 23:26:26,946 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 96 completed...
+Time Taken: 0.6749848484992981
+2022-08-17 23:26:26,946 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 96	
+ best epoch: 88	
+ train loss epoch: 0.0006315547199388833	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9986250597800096	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:26:26,946 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 97	
+2022-08-17 23:27:07,468 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 97 completed...
+Time Taken: 0.6753719488779704
+2022-08-17 23:27:07,469 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 97	
+ best epoch: 88	
+ train loss epoch: 0.0010113259112863578	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9982065997130559	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:27:07,469 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 98	
+2022-08-17 23:27:48,199 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 98 completed...
+Time Taken: 0.6788438995679219
+2022-08-17 23:27:48,200 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 98	
+ best epoch: 88	
+ train loss epoch: 0.00014607843991443543	
+ min train loss: 5.1162482419061725e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9994619799139168	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:27:48,200 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 99	
+2022-08-17 23:28:28,888 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 99 completed...
+Time Taken: 0.678134016195933
+2022-08-17 23:28:28,888 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 99	
+ best epoch: 88	
+ train loss epoch: 4.6543562838312854e-05	
+ min train loss: 4.6543562838312854e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 1.0	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:28:28,888 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 100	
+2022-08-17 23:29:09,513 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 100 completed...
+Time Taken: 0.6770687143007914
+2022-08-17 23:29:09,513 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 100	
+ best epoch: 88	
+ train loss epoch: 0.00017895585805659806	
+ min train loss: 4.6543562838312854e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9999402199904353	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:29:09,513 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 101	
+2022-08-17 23:29:50,114 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 101 completed...
+Time Taken: 0.6766846338907878
+2022-08-17 23:29:50,115 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 101	
+ best epoch: 88	
+ train loss epoch: 0.0006856733427509734	
+ min train loss: 4.6543562838312854e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9995815399330464	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:29:50,115 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 102	
+2022-08-17 23:30:31,166 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 102 completed...
+Time Taken: 0.6841909646987915
+2022-08-17 23:30:31,167 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 102	
+ best epoch: 88	
+ train loss epoch: 0.0004710208312604719	
+ min train loss: 4.6543562838312854e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9986848397895743	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:30:31,167 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 103	
+2022-08-17 23:31:11,439 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 103 completed...
+Time Taken: 0.671200430393219
+2022-08-17 23:31:11,439 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 103	
+ best epoch: 88	
+ train loss epoch: 0.0007401665223525502	
+ min train loss: 4.6543562838312854e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9995217599234816	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:31:11,439 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 104	
+2022-08-17 23:31:51,859 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 104 completed...
+Time Taken: 0.6736588795979818
+2022-08-17 23:31:51,859 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 104	
+ best epoch: 88	
+ train loss epoch: 0.0001642446061778475	
+ min train loss: 4.6543562838312854e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998206599713056	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:31:51,859 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 105	
+2022-08-17 23:32:32,375 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 105 completed...
+Time Taken: 0.6752654194831849
+2022-08-17 23:32:32,375 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 105	
+ best epoch: 88	
+ train loss epoch: 2.1205602847043777e-05	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 1.0	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:32:32,376 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 106	
+2022-08-17 23:33:13,706 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 106 completed...
+Time Taken: 0.6888343493143717
+2022-08-17 23:33:13,706 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 106	
+ best epoch: 88	
+ train loss epoch: 9.925519306324422e-05	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 1.0	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:33:13,706 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 107	
+2022-08-17 23:33:54,305 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 107 completed...
+Time Taken: 0.6766383806864421
+2022-08-17 23:33:54,305 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 107	
+ best epoch: 88	
+ train loss epoch: 0.0005900226840985087	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9993424198947872	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:33:54,305 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 108	
+2022-08-17 23:34:34,598 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 108 completed...
+Time Taken: 0.6715426127115885
+2022-08-17 23:34:34,598 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 108	
+ best epoch: 88	
+ train loss epoch: 0.00011450105234208266	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 1.0	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:34:34,598 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 109	
+2022-08-17 23:35:15,377 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 109 completed...
+Time Taken: 0.679657518863678
+2022-08-17 23:35:15,378 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 109	
+ best epoch: 88	
+ train loss epoch: 0.0011992073820855378	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9977283596365375	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:35:15,378 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 110	
+2022-08-17 23:35:56,510 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 110 completed...
+Time Taken: 0.6855371117591857
+2022-08-17 23:35:56,510 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 110	
+ best epoch: 88	
+ train loss epoch: 0.0009340638830862513	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.99701099952176	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:35:56,511 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 111	
+2022-08-17 23:36:37,216 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 111 completed...
+Time Taken: 0.6784247159957886
+2022-08-17 23:36:37,216 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 111	
+ best epoch: 88	
+ train loss epoch: 0.0011760885249574196	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9972501195600191	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:36:37,217 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 112	
+2022-08-17 23:37:18,198 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 112 completed...
+Time Taken: 0.6830291191736857
+2022-08-17 23:37:18,199 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 112	
+ best epoch: 88	
+ train loss epoch: 0.0006577849481853064	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9989239598278336	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:37:18,199 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 113	
+2022-08-17 23:37:59,075 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 113 completed...
+Time Taken: 0.6812620679537456
+2022-08-17 23:37:59,075 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 113	
+ best epoch: 88	
+ train loss epoch: 0.0008594069607233868	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9989837398373984	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:37:59,075 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 114	
+2022-08-17 23:38:40,037 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 114 completed...
+Time Taken: 0.6827018022537231
+2022-08-17 23:38:40,037 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 114	
+ best epoch: 88	
+ train loss epoch: 0.0002524959612824398	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9996413199426112	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:38:40,038 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 115	
+2022-08-17 23:39:20,955 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 115 completed...
+Time Taken: 0.6819519559542339
+2022-08-17 23:39:20,955 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 115	
+ best epoch: 88	
+ train loss epoch: 0.00019301696159054616	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998206599713056	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:39:20,955 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 116	
+2022-08-17 23:40:02,217 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 116 completed...
+Time Taken: 0.6876888473828634
+2022-08-17 23:40:02,217 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 116	
+ best epoch: 88	
+ train loss epoch: 7.1503419866547e-05	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998804399808704	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:40:02,217 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 117	
+2022-08-17 23:40:43,562 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 117 completed...
+Time Taken: 0.6890877683957418
+2022-08-17 23:40:43,563 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 117	
+ best epoch: 88	
+ train loss epoch: 0.0005518892720221575	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9995815399330464	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:40:43,563 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 118	
+2022-08-17 23:41:25,209 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 118 completed...
+Time Taken: 0.6941007653872172
+2022-08-17 23:41:25,209 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 118	
+ best epoch: 88	
+ train loss epoch: 0.00045988965793588904	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.998804399808704	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:41:25,209 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 119	
+2022-08-17 23:42:07,273 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 119 completed...
+Time Taken: 0.7010577201843262
+2022-08-17 23:42:07,273 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 119	
+ best epoch: 88	
+ train loss epoch: 0.00023818450597738297	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9997608799617408	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:42:07,273 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 120	
+2022-08-17 23:42:48,242 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 120 completed...
+Time Taken: 0.6828168471654256
+2022-08-17 23:42:48,243 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 120	
+ best epoch: 88	
+ train loss epoch: 0.00031290332135038907	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998804399808704	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:42:48,243 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 121	
+2022-08-17 23:43:29,065 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 121 completed...
+Time Taken: 0.680370299021403
+2022-08-17 23:43:29,065 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 121	
+ best epoch: 88	
+ train loss epoch: 0.000546466400770753	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9997608799617408	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:43:29,065 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 122	
+2022-08-17 23:44:10,648 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 122 completed...
+Time Taken: 0.6930458823839823
+2022-08-17 23:44:10,649 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 122	
+ best epoch: 88	
+ train loss epoch: 3.956655269337687e-05	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9999402199904353	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:44:10,649 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 123	
+2022-08-17 23:44:51,632 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 123 completed...
+Time Taken: 0.6830523808797201
+2022-08-17 23:44:51,632 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 123	
+ best epoch: 88	
+ train loss epoch: 0.00013520362345801509	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9997608799617408	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:44:51,632 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 124	
+2022-08-17 23:45:32,422 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 124 completed...
+Time Taken: 0.6798215468724569
+2022-08-17 23:45:32,422 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 124	
+ best epoch: 88	
+ train loss epoch: 0.0004610276052830636	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9989239598278336	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:45:32,422 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 125	
+2022-08-17 23:46:13,880 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 125 completed...
+Time Taken: 0.6909646948178609
+2022-08-17 23:46:13,880 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 125	
+ best epoch: 88	
+ train loss epoch: 0.0022689526547167867	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9968914395026304	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:46:13,880 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 126	
+2022-08-17 23:46:54,681 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 126 completed...
+Time Taken: 0.68000648021698
+2022-08-17 23:46:54,681 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 126	
+ best epoch: 88	
+ train loss epoch: 0.0016726924012752304	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9945002391200383	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:46:54,681 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 127	
+2022-08-17 23:47:35,360 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 127 completed...
+Time Taken: 0.677980117003123
+2022-08-17 23:47:35,360 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 127	
+ best epoch: 88	
+ train loss epoch: 0.0023990044384354257	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9961142993782879	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:47:35,361 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 128	
+2022-08-17 23:48:16,494 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 128 completed...
+Time Taken: 0.6855502367019654
+2022-08-17 23:48:16,494 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 128	
+ best epoch: 88	
+ train loss epoch: 0.00046525757623191777	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9990435198469632	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:48:16,494 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 129	
+2022-08-17 23:48:57,343 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 129 completed...
+Time Taken: 0.6808191696802776
+2022-08-17 23:48:57,344 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 129	
+ best epoch: 88	
+ train loss epoch: 0.0005333380289650625	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.999701099952176	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:48:57,344 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 130	
+2022-08-17 23:49:38,322 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 130 completed...
+Time Taken: 0.6829637964566548
+2022-08-17 23:49:38,322 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 130	
+ best epoch: 88	
+ train loss epoch: 0.0007248074511500584	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9994619799139168	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:49:38,322 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 131	
+2022-08-17 23:50:19,658 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 131 completed...
+Time Taken: 0.6889368216196696
+2022-08-17 23:50:19,659 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 131	
+ best epoch: 88	
+ train loss epoch: 0.0005741232264668073	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.999103299856528	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:50:19,659 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 132	
+2022-08-17 23:51:00,443 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 132 completed...
+Time Taken: 0.6797309994697571
+2022-08-17 23:51:00,443 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 132	
+ best epoch: 88	
+ train loss epoch: 0.00015475250862386403	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9997608799617408	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:51:00,443 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 133	
+2022-08-17 23:51:41,579 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 133 completed...
+Time Taken: 0.6855903188387553
+2022-08-17 23:51:41,579 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 133	
+ best epoch: 88	
+ train loss epoch: 5.608477171164281e-05	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 1.0	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:51:41,579 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 134	
+2022-08-17 23:52:22,839 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 134 completed...
+Time Taken: 0.6876659671465556
+2022-08-17 23:52:22,840 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 134	
+ best epoch: 88	
+ train loss epoch: 0.00012698908455259305	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998804399808704	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:52:22,840 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 135	
+2022-08-17 23:53:04,067 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 135 completed...
+Time Taken: 0.6871185302734375
+2022-08-17 23:53:04,067 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 135	
+ best epoch: 88	
+ train loss epoch: 0.00014349038856108372	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9997608799617408	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:53:04,067 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 136	
+2022-08-17 23:53:45,153 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 136 completed...
+Time Taken: 0.6847654024759928
+2022-08-17 23:53:45,154 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 136	
+ best epoch: 88	
+ train loss epoch: 6.129114260507805e-05	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 1.0	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:53:45,154 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 137	
+2022-08-17 23:54:26,692 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 137 completed...
+Time Taken: 0.6923014720280966
+2022-08-17 23:54:26,692 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 137	
+ best epoch: 88	
+ train loss epoch: 0.0004754618662853886	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.999402199904352	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:54:26,692 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 138	
+2022-08-17 23:55:08,210 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 138 completed...
+Time Taken: 0.6919537504514058
+2022-08-17 23:55:08,210 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 138	
+ best epoch: 88	
+ train loss epoch: 0.0001236440042739012	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998804399808704	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:55:08,210 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 139	
+2022-08-17 23:55:49,053 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 139 completed...
+Time Taken: 0.6807134032249451
+2022-08-17 23:55:49,053 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 139	
+ best epoch: 88	
+ train loss epoch: 6.496505257125423e-05	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9999402199904353	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:55:49,053 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 140	
+2022-08-17 23:56:25,206 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 140 completed...
+Time Taken: 0.6025526642799377
+2022-08-17 23:56:25,207 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 140	
+ best epoch: 88	
+ train loss epoch: 0.00010577032412429354	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9999402199904353	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:56:25,207 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 141	
+2022-08-17 23:57:01,072 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 141 completed...
+Time Taken: 0.5977558970451355
+2022-08-17 23:57:01,072 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 141	
+ best epoch: 88	
+ train loss epoch: 0.000599891360901421	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9989239598278336	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:57:01,073 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 142	
+2022-08-17 23:57:35,715 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 142 completed...
+Time Taken: 0.5773679335912069
+2022-08-17 23:57:35,715 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 142	
+ best epoch: 88	
+ train loss epoch: 0.0019304986895374218	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9959947393591583	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:57:35,715 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 143	
+2022-08-17 23:58:10,717 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 143 completed...
+Time Taken: 0.5833613475163778
+2022-08-17 23:58:10,717 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 143	
+ best epoch: 88	
+ train loss epoch: 0.0015383248528334562	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9973098995695839	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:58:10,717 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 144	
+2022-08-17 23:58:45,868 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 144 completed...
+Time Taken: 0.5858457843462627
+2022-08-17 23:58:45,868 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 144	
+ best epoch: 88	
+ train loss epoch: 0.00047408888060469654	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.999701099952176	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:58:45,868 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 145	
+2022-08-17 23:59:21,114 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 145 completed...
+Time Taken: 0.5874208847681681
+2022-08-17 23:59:21,114 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 145	
+ best epoch: 88	
+ train loss epoch: 0.0002230539250561758	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9996413199426112	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:59:21,114 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 146	
+2022-08-17 23:59:56,404 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 146 completed...
+Time Taken: 0.5881582657496135
+2022-08-17 23:59:56,404 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 146	
+ best epoch: 88	
+ train loss epoch: 0.00036783890359735465	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.999701099952176	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-17 23:59:56,404 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 147	
+2022-08-18 00:00:31,480 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 147 completed...
+Time Taken: 0.5846028168996175
+2022-08-18 00:00:31,481 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 147	
+ best epoch: 88	
+ train loss epoch: 0.0002655940719450815	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9996413199426112	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-18 00:00:31,481 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 148	
+2022-08-18 00:01:06,846 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 148 completed...
+Time Taken: 0.5894268155097961
+2022-08-18 00:01:06,847 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 148	
+ best epoch: 88	
+ train loss epoch: 7.938072145759466e-05	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 1.0	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-18 00:01:06,847 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 149	
+2022-08-18 00:01:42,160 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 149 completed...
+Time Taken: 0.5885468681653341
+2022-08-18 00:01:42,160 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 149	
+ best epoch: 88	
+ train loss epoch: 0.00016572827086632042	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9997608799617408	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-18 00:01:42,160 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 150	
+2022-08-18 00:02:17,270 | DEBUG | modelv2.py: 458 : train_model() ::	 Training for epoch 150 completed...
+Time Taken: 0.5851680000623067
+2022-08-18 00:02:17,270 | INFO | logger.py: 34 : print_log() ::	 
+ Epoch: 150	
+ best epoch: 88	
+ train loss epoch: 0.00012216341169480425	
+ min train loss: 2.1205602847043777e-05	
+ val loss epoch: inf	
+ min val loss: inf	
+ test loss epoch: inf	
+ min test loss: inf	
+ gen loss epoch: inf	
+ min gen loss: inf	
+ train acc epoch: 0.9998206599713056	
+ max train acc: 1.0	
+ val acc epoch: 0.0	
+ max val acc: 0.0	
+ test acc epoch: 0.0	
+ max test acc: 0.0	
+ gen acc epoch: 0.0	
+ max gen acc: 0.0	
+2022-08-18 00:02:17,271 | INFO | modelv2.py: 587 : train_model() ::	 Training Completed for 150 epochs
+2022-08-18 00:02:17,272 | INFO | modelv2.py: 591 : train_model() ::	 Scores saved at ./out/val_results_simple_split_tsv.json
