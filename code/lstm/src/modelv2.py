@@ -746,12 +746,6 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 
 	display_n = config.batch_size
 
-	with open(config.outputs_path + '/outputs.txt', 'w') as f_out:
-		f_out.write('---------------------------------------\n')
-		f_out.write('Set: '+ disp_tok +'\n')
-		f_out.write('Epoch: ' + str(epoch_num) + '\n')
-		f_out.write('---------------------------------------\n')
-
 	total_batches = len(dataloader)
 	for data in dataloader:
 		sent1s = sents_to_idx(voc1, data['src'], config.max_length)
@@ -794,9 +788,8 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 			scores   += [cal_score([decoder_output[i]], [data['trg'][i]], beam_decode=config.beam_decode)[0] for i in range(sent1_var.size(1))]
 			# print(decoder_output)
 
-		with open(config.outputs_path + '/outputs.txt', 'a') as f_out:
-			f_out.write('Batch: ' + str(batch_num) + '\n')
-			f_out.write('---------------------------------------\n')
+		
+		with open(config.outputs_path + '/outputs.txt', 'w') as f_out:
 			for i in range(len(sent1s[:display_n])):
 				try:
 					f_out.write('Example: ' + str(i) + '\n')
@@ -813,7 +806,6 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 					logger.warning('Exception: Failed to generate')
 					pdb.set_trace()
 					break
-			f_out.write('---------------------------------------\n')
 			f_out.close()
 
 		if batch_num % config.display_freq == 0:
