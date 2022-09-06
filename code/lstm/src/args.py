@@ -11,7 +11,7 @@ def build_parser():
 	parser.add_argument('-no_beam_decode', dest='beam_decode', action='store_false', help='To generate model negatives, perform beam decoding')
 	parser.set_defaults(beam_decode=True)
 
-	parser.add_argument('-topk', type=int, default=8, help='Get top k queries from the beam decoder')
+	parser.add_argument('-topk', type=int, default=50, help='Get top k queries from the beam decoder')
 
 	# Mode specifications
 	parser.add_argument('-mode', type=str, default='train', choices=['train', 'test', 'conf'], help='Modes: train, test, conf')
