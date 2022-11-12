@@ -330,16 +330,17 @@ class Seq2SeqModel(nn.Module):
 				nodes = PriorityQueue()
 
 				# start the queue
-				nodes.put((-node.eval(), node))
+				nodes.put((-node.eval(), id(node), node))
 				qsize = 1
 
+				depth = 2
 				# start the beam search
 				while True:
 					# give up when decoding takes too long
 					if qsize > 2000: break
 
 					# fetch the best node
-					score, n = nodes.get()
+					score, _, n = nodes.get()
 					decoder_input = n.word_id
 					decoder_hidden = n.h
 
@@ -370,13 +371,15 @@ class Seq2SeqModel(nn.Module):
 						log_p = log_prob[0][new_k].item()
 
 						node = BeamSearchNode(decoder_hidden, n, decoded_t, n.logp + log_p, n.leng + 1)
-						score = -node.eval()
+						score = -node.eval() * np.log2(depth) 
 						nextnodes.append((score, node))
 
 					for i in range(len(nextnodes)):
 						score, nn = nextnodes[i]
-						nodes.put((score, nn))
+						nodes.put((score, id(nn), nn))
 						# increase qsize
+
+					depth += 1
 					
 					qsize += len(nextnodes) - 1
 
@@ -403,7 +406,7 @@ class Seq2SeqModel(nn.Module):
 			return decoded_batch
 
 
-	def greedy_decode(self, src, input_seq1=None, input_seq2=None, input_len1=None, input_len2=None, validation=False, return_probs = False):
+	def greedy_decode(self, src, input_seq1=None, input_seq2=None, input_len1=None, input_len2=None, validation=False, return_probs = False, topk=3):
 		with torch.no_grad():
 			if self.config.embedding == 'bert' or self.config.embedding == 'roberta':
 				input_seq1, input_len1 = self.embedding1(src)
@@ -450,11 +453,18 @@ class Seq2SeqModel(nn.Module):
 					else:
 						loss += self.criterion(decoder_output, eos_list)
 				
-				topv, topi = decoder_output.topk(1)
+				# topv, topi = decoder_output.topk(1)
+
+				'''print(f'decoder_output.shape[0]: {decoder_output.shape[0]}')
+				max_topk = decoder_output.shape[0] # learn decoder output's shape
+				topk = min(max_topk, topk)'''
+
+				topv, topi = decoder_output.topk(topk)
 
 				break_flag = 1
 
 				for i in range(input_seq1.size(1)):
+					# print(f'Topi.shape: {topi.shape}, Topi[i].shape: {topi[i].shape}')
 					if topi[i].item() == self.EOS_token:
 						continue
 					break_flag = 0
@@ -572,7 +582,7 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 			if config.show_train_acc:
 				model.eval()
 
-				_, decoder_output, _ = model.greedy_decode(src, sent1_var, sent2_var, input_len1, input_len2, validation=True)
+				_, decoder_output, _ = model.greedy_decode(src, sent1_var, sent2_var, input_len1, input_len2, validation=True, topk=config.topk)
 				temp_acc_cnt, temp_acc_tot, _ = cal_score(decoder_output, data['trg'])
 				train_acc_epoch_cnt += temp_acc_cnt
 				train_acc_epoch_tot += temp_acc_tot
@@ -746,6 +756,9 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 
 	display_n = config.batch_size
 
+	with open(config.outputs_path + '/outputs.txt', 'w') as f_out:
+		pass
+
 	total_batches = len(dataloader)
 	for data in dataloader:
 		sent1s = sents_to_idx(voc1, data['src'], config.max_length)
@@ -755,7 +768,7 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 
 		sent1_var, sent2_var, input_len1, input_len2 = process_batch(sent1s, sent2s, voc1, voc2, device)
 
-		val_loss, decoder_output, _ = model.greedy_decode(src, sent1_var, sent2_var, input_len1, input_len2, validation)
+		val_loss, decoder_output, _ = model.greedy_decode(src, sent1_var, sent2_var, input_len1, input_len2, validation, topk=1)
 
 		if config.mode == 'test' and config.beam_decode:
 			if config.debug:
@@ -789,7 +802,7 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 			# print(decoder_output)
 
 		
-		with open(config.outputs_path + '/outputs.txt', 'w') as f_out:
+		with open(config.outputs_path + '/outputs.txt', 'a') as f_out:
 			for i in range(len(sent1s[:display_n])):
 				try:
 					f_out.write('Example: ' + str(i) + '\n')

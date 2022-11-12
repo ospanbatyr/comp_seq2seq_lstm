@@ -11,7 +11,7 @@ def build_parser():
 	parser.add_argument('-no_beam_decode', dest='beam_decode', action='store_false', help='To generate model negatives, perform beam decoding')
 	parser.set_defaults(beam_decode=True)
 
-	parser.add_argument('-topk', type=int, default=50, help='Get top k queries from the beam decoder')
+	parser.add_argument('-topk', type=int, default=250, help='Get top k queries from the beam decoder')
 
 	# Mode specifications
 	parser.add_argument('-mode', type=str, default='train', choices=['train', 'test', 'conf'], help='Modes: train, test, conf')
@@ -46,7 +46,7 @@ def build_parser():
 	parser.add_argument('-finetune_data_voc', type=str, default='none', help='finetuning dataset whose voc needs to be considered now. Keep none if voc not to be added')
 
 	parser.add_argument('-run_name', type=str, default='debug', help='run name for logs')
-	parser.add_argument('-project_name', type=str, default='scan-trial', help='Name of the project')
+	parser.add_argument('-project_name', type=str, default='DCfC-SCAN-ModelNeg', help='Name of the project')
 	parser.add_argument('-dataset', type=str, default='cogs', help='Dataset')
 
 	parser.add_argument('-display_freq', type=int, default= 10000, help='number of batches after which to display samples')
