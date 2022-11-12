@@ -118,3 +118,17 @@ def process_batch(sent1s, sent2s, voc1, voc2, device):
 	sent2_var = sent2_var.to(device)
 
 	return sent1_var, sent2_var, input_len1, input_len2
+
+
+def process_batch_cls(sent1s, voc1, device):
+	input_len1 = [len(s) for s in sent1s]
+	max_length_1 = max(input_len1)
+
+	sent1s_padded = [pad_seq(s, max_length_1, voc1) for s in sent1s]
+
+	# Convert to [Max_len X Batch]
+	sent1_var = Variable(torch.LongTensor(sent1s_padded)).transpose(0, 1)
+
+	sent1_var = sent1_var.to(device)
+
+	return sent1_var, input_len1

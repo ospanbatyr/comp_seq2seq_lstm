@@ -63,13 +63,19 @@ class Encoder(nn.Module):
 		#embedded = self.embedding(sorted_seqs)  ### NO MORE IDS
 		packed = torch.nn.utils.rnn.pack_padded_sequence(
 			sorted_seqs, sorted_len)
-		outputs, hidden = self.rnn(packed, hidden)
-		outputs, output_lengths = torch.nn.utils.rnn.pad_packed_sequence(
-			outputs)  # unpack (back to padded)
+		outputs, (hidden, c) = self.rnn(packed, hidden)
+		outputs, lengths = torch.nn.utils.rnn.pad_packed_sequence(outputs)  # unpack (back to padded)
 
-		outputs = outputs.index_select(1, orig_idx)
+		batch_size = len(lengths)
+
+		#print(f'outputs.shape: {outputs.shape}')
+		# grab the final output for each sequence in the batch
+		outputs = outputs.transpose(0, 1)
+		outputs = outputs[torch.arange(batch_size, out=torch.LongTensor()), lengths - 1].to(device)
+		
+		# print(f'h.shape: {hidden.shape}, hidden[-1].squeeze(0).shape: {hidden[-1].squeeze(0).shape}')
 
 		if self.bidirectional:
-			outputs = outputs[:, :, :self.hidden_size] + outputs[:, : ,self.hidden_size:] # Sum bidirectional outputs
+			outputs = outputs[:, :self.hidden_size] + outputs[:, self.hidden_size:] # Sum bidirectional outputs
 
-		return outputs, hidden
+		return hidden[-1].squeeze(0), hidden
