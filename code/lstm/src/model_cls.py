@@ -69,6 +69,7 @@ class Seq2SeqModel(nn.Module):
 		self.logger.debug('Encoders Built...')
 		
 		self.fc1 = nn.Linear(self.config.hidden_size, self.config.hidden_size // 2)
+		self.relu = nn.ReLU()
 		self.out = nn.Linear(self.config.hidden_size // 2, 2)
 
 		self.logger.debug('Fully connected layer initialized ...')
@@ -238,10 +239,9 @@ class Seq2SeqModel(nn.Module):
 		h = self.fc1(encoder_outputs) # TODO check dimensions
 		# print(f'h.shape: {h.shape}')
 
-		out = self.out(h)
+		h = self.relu(h)
 
-		# print(f'Out.shape: {out.shape}')
-		# print(f'Labels.shape: {len(input_labels)}')
+		out = self.out(h)
 
 		self.loss = self.criterion(out, input_labels)
 
@@ -269,6 +269,7 @@ class Seq2SeqModel(nn.Module):
 			encoder_outputs, _ = self.encoder(sorted_seqs, sorted_len, orig_idx, self.device)
 			#encoder_outputs = torch.mean(encoder_outputs, 0)
 			h = self.fc1(encoder_outputs) # TODO check dimensions
+			h = self.relu(h) # TODO check dimensions
 			out = self.out(h)
 
 			loss = self.criterion(out, labels) 
