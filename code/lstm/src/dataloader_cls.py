@@ -35,30 +35,34 @@ class TextDataset(Dataset):
 
 		file_df= pd.read_csv(file_path, sep='\t')
 
-		self.src= file_df['Input'].values
-		self.trg= file_df['Output'].values
+		self.src = file_df['Source'].values
+		self.trg = file_df['Input'].values
+		self.labels= file_df['Output'].values
 
 		if is_debug:
-			self.src= self.src[:5000:500]
-			self.trg= self.trg[:5000:500]
+			self.src = self.src[:5000:500]
+			self.trg = self.trg[:5000:500]
+			self.labels = self.labels[:5000:500]
 
-		self.max_length= max_length
+		self.max_length = max_length
 
-		all_sents = zip(self.src, self.trg)
+		all_sents = zip(self.src, self.trg, self.labels)
 
 		if to_sort:
 			all_sents = sorted(all_sents, key = lambda x : len(x[0].split()))
 
-		self.src, self.trg = zip(*all_sents)
+		self.src, self.trg, self.labels = zip(*all_sents)
 
 	def __len__(self):
 		return len(self.src)
 
+	# TODO, in other datasets, we may need to generalize this function
 	def __getitem__(self, idx):
-		src = self.process_string(str(self.src[idx]))
-		trg = int(self.trg[idx])
+		src = str(self.src[idx])
+		trg = str(self.trg[idx])
+		labels = int(self.labels[idx])
 	
-		return {'src': src, 'trg': trg}
+		return {'src': src, 'trg': trg, 'labels': labels}
 
 	def curb_to_length(self, string):
 		return ' '.join(string.strip().split()[:self.max_length])

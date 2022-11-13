@@ -138,6 +138,7 @@ def main():
 	wandb.config.update(args, allow_val_change=True) # adds all of the arguments as config variables
 
 	vocab1_path = os.path.join(config.model_path, 'vocab1.p')
+	vocab2_path = os.path.join(config.model_path, 'vocab2.p')
 	config_file = os.path.join(config.model_path, 'config.p')
 	log_file = os.path.join(config.log_path, 'log.txt')
 
@@ -167,13 +168,27 @@ def main():
 			voc1 = Voc()
 			voc1.create_vocab_dict(config, train_dataloader, 'src')
 
+			voc2 = Voc()
+			voc2.create_vocab_dict(config, train_dataloader, 'trg')
+
+			if val_dataloader is not None:
+				voc2.add_to_vocab_dict(config, val_dataloader, 'trg')
+			if test_dataloader is not None:
+				voc2.add_to_vocab_dict(config, test_dataloader, 'trg')
+			if gen_dataloader is not None:
+				voc2.add_to_vocab_dict(config, gen_dataloader, 'trg')
+				
 			if finetune_dataloader is not None:
 				voc1.add_to_vocab_dict(config, finetune_dataloader, 'src')
+				voc2.add_to_vocab_dict(config, finetune_dataloader, 'trg')
 
 			logger.info('Input Vocab Created with number of words : {}'.format(voc1.nwords))
+			logger.info('Output Vocab Created with number of words : {}'.format(voc2.nwords))
 
 			with open(vocab1_path, 'wb') as f:
 				pickle.dump(voc1, f, protocol=pickle.HIGHEST_PROTOCOL)
+			with open(vocab2_path, 'wb') as f:
+				pickle.dump(voc2, f, protocol=pickle.HIGHEST_PROTOCOL)
 
 			logger.info('Vocab saved at {}'.format(vocab1_path))
 		else:
@@ -181,9 +196,12 @@ def main():
 
 			pretrained_model_path = os.path.join(model_folder, config.pretrained_model_name)
 			vocab1_path = os.path.join(pretrained_model_path, 'vocab1.p')
+			vocab2_path = os.path.join(pretrained_model_path, 'vocab2.p')
 
 			with open(vocab1_path, 'rb') as f:
 				voc1 = pickle.load(f)
+			with open(vocab2_path, 'rb') as f:
+				voc2 = pickle.load(f)
 
 			logger.info('Vocab Files loaded from {}\nNumber of Words: {}'.format(vocab1_path, voc1.nwords))
 
@@ -196,15 +214,18 @@ def main():
 
 		pretrained_model_path = os.path.join(model_folder, config.pretrained_model_name)
 		vocab1_path = os.path.join(pretrained_model_path, 'vocab1.p')
+		vocab2_path = os.path.join(pretrained_model_path, 'vocab2.p')
 		config_file = os.path.join(pretrained_model_path, 'config.p')
 
 		with open(vocab1_path, 'rb') as f:
 			voc1 = pickle.load(f)
+		with open(vocab2_path, 'rb') as f:
+			voc2 = pickle.load(f)
 
 		logger.info('Vocab Files loaded from {}\nNumber of words in voc1: {}'.format(vocab1_path, voc1.nwords))
 
 	if is_train:
-		model = build_model(config=config, voc1=voc1, device=device, logger=logger)
+		model = build_model(config=config, voc1=voc1, voc2=voc2, device=device, logger=logger)
 
 		logger.info('Initialized Model')
 
@@ -229,7 +250,7 @@ def main():
 		logger.debug('Config File Saved')
 
 		logger.info('Starting Training Procedure')
-		train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_dataloader, voc1, device, config, logger, 
+		train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_dataloader, voc1, voc2, device, config, logger, 
 					min_train_loss, min_val_loss, min_test_loss, min_gen_loss, max_train_acc, max_val_acc, max_test_acc, max_gen_acc, best_epoch)
 
 	else :
@@ -256,7 +277,7 @@ def main():
 			config.outputs_path = outputs_path
 			config.topk = topk
 
-		model = build_model(config=config, voc1=voc1, device=device, logger=logger)
+		model = build_model(config=config, voc1=voc1, voc2=voc2, device=device, logger=logger)
 
 		logger.info('Initialized Model')
 
@@ -283,6 +304,7 @@ def main():
 			logger.info('Accuracy: {}'.format(gen_acc_epoch))
 
 if __name__ == '__main__':
+	torch.multiprocessing.set_sharing_strategy('file_system')
 	main()
 
 
