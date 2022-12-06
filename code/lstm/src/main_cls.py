@@ -132,7 +132,7 @@ def main():
 	if config.mode == 'test' and config.pretrained_model_name == 'none':
 		config.pretrained_model_name == run_name
 
-	wandb.init(project=config.project_name, entity='osmanbatur')
+	wandb.init(project=config.project_name, entity='osmanbatur', mode="disabled")
 	wandb.init(config={"lr": 0.1})
 	wandb.config.epochs = 4
 	wandb.config.update(args, allow_val_change=True) # adds all of the arguments as config variables

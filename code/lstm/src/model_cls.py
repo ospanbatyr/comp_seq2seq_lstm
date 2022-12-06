@@ -13,7 +13,7 @@ import torch.multiprocessing
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from transformers import AdamW
-from gensim import models
+# from gensim import models
 from src.components.encoder import Encoder
 from src.components.contextual_embeddings import BertEncoder, RobertaEncoder
 from src.utils.sentence_processing import *
@@ -24,7 +24,7 @@ from collections import OrderedDict
 from pprint import pprint
 from sklearn.metrics import roc_auc_score
 from copy import deepcopy
-
+from memory_profiler import profile
 import wandb
 
 class Seq2SeqModel(nn.Module):
@@ -130,13 +130,14 @@ class Seq2SeqModel(nn.Module):
 
 	# TODO - Change this as it only forms embeddings for emb1
 	def _form_embeddings(self, file_path):
-		weights_all = models.KeyedVectors.load_word2vec_format(file_path, limit=200000, binary=True)
-		weight_req  = torch.randn(self.voc1.nwords, self.config.emb1_size)
-		for key, value in self.voc1.id2w.items():
-			if value in weights_all:
-				weight_req[key] = torch.FloatTensor(weights_all[value])
-
-		return weight_req	
+		pass
+	#	weights_all = models.KeyedVectors.load_word2vec_format(file_path, limit=200000, binary=True)
+	#	weight_req  = torch.randn(self.voc1.nwords, self.config.emb1_size)
+	#	for key, value in self.voc1.id2w.items():
+	#		if value in weights_all:
+	#			weight_req[key] = torch.FloatTensor(weights_all[value])
+	#
+	#	return weight_req	
 
 	def _initialize_optimizer(self):
 		self.params =   list()
@@ -231,7 +232,7 @@ class Seq2SeqModel(nn.Module):
 			Returns:
 				out (tensor) : Probabilities of each output label for each point | size : [batch_size x num_labels]
 		'''
-
+	
 	def trainer(self, source, target, input_seq_src, input_seq_trg, input_labels, input_len_src, input_len_trg, config, device=None, logger=None):
 		'''
 			Args:
@@ -276,17 +277,20 @@ class Seq2SeqModel(nn.Module):
 		h = self.relu(h)
 
 		out = self.out(h)
+		
+		input_labels = input_labels.to(device)
+		loss = self.criterion(out, input_labels)
+		input_labels = input_labels.detach().cpu()
 
-		self.loss = self.criterion(out, input_labels)
-
-		self.loss.backward()
+		loss.backward()
+		
+		self.loss = loss.item()
 		if self.config.max_grad_norm > 0:
 			torch.nn.utils.clip_grad_norm_(self.params, self.config.max_grad_norm)
 
 		self.optimizer.step()
 
-		return out, self.loss.item()
-
+		return out.detach().cpu(), self.loss
 
 	def evaluate(self, data, input_seq_src, input_seq_trg, input_len_src, input_len_trg):
 		src = data['src']
@@ -318,10 +322,10 @@ class Seq2SeqModel(nn.Module):
 			h = self.relu(h) # TODO check dimensions
 			out = self.out(h)
 
-			loss = self.criterion(out, labels) 
+			loss = self.criterion(out.detach().cpu(), labels)
 
 		
-		return out, loss
+		return out.detach().cpu(), loss.item()
 
 
 def build_model(config, voc1, voc2, device, logger):
@@ -334,7 +338,7 @@ def build_model(config, voc1, voc2, device, logger):
 	return model
 
 
-
+@profile
 def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_dataloader, voc1, voc2, device, config, logger, min_train_loss=float('inf'), min_val_loss=float('inf'), min_test_loss=float('inf'), 
 				min_gen_loss=float('inf'), max_train_acc = 0.0, max_val_acc = 0.0, max_test_acc = 0.0, max_gen_acc = 0.0, max_train_auc = 0.0, max_val_auc = 0.0, max_test_auc = 0.0, max_gen_auc = 0.0, best_epoch = 0):
 	'''
@@ -344,6 +348,7 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 	estop_count=0
 	
 	for epoch in range(1, config.epochs + 1):
+		torch.cuda.empty_cache()
 		od = OrderedDict()
 		od['Epoch'] = epoch
 		print_log(logger, od)
@@ -373,8 +378,10 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 
 			outs, loss = model.trainer(src, trg, sent_src_var, sent_trg_var, labels, input_len_src, input_len_trg, config, device, logger)
 			train_loss_epoch += loss
-
-			y_scores.append(outs.data[:, 1])
+			
+			scores = outs.data[:, 1]
+			y_scores.append(scores)
+			
 			y.append(labels)
 
 			wandb.log({"train loss per step": loss})
@@ -384,6 +391,11 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 
 				_, preds = torch.max(outs.data, 1)
 				
+				if device is not None:
+					preds = preds.detach().cpu()
+				
+				#print(f"preds.shape: {preds.shape}, type(labels): {type(labels)}")
+				#print(f"labels.shape: {labels.shape}")
 				train_acc_epoch_cnt += (preds == labels).sum().item()
 				train_acc_epoch_tot += labels.size(0)
 
@@ -607,7 +619,7 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 
 		src = data['src']
 		trg = data['trg']
-		labels = data['labels']
+		labels = torch.LongTensor(data['labels'])
 
 		sent_src_var, sent_trg_var, input_len_src, input_len_trg = process_batch_cls(sent_srcs, sent_trgs, voc1, voc2, device)
 
@@ -660,5 +672,4 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 	val_auc_epoch = roc_auc_score(y, y_scores)
 
 	return val_loss_epoch/(len(dataloader) * config.batch_size), val_acc_epoch, val_auc_epoch
-
 
