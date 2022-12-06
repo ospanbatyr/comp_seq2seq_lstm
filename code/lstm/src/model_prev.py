@@ -220,7 +220,13 @@ class Seq2SeqModel(nn.Module):
 				self.optimizer = optim.SGD(
 					[{"params": self.non_emb_params, "lr": self.config.lr}]
 				)
-	
+	def save_tensor(tensor, directory, file_name):
+                path = f"{args.output_dir}/{directory}"
+                os.makedirs(path, exist_ok=True)
+                file_name = os.path.join(path, f"epoch{epoch}_{file_name}_{list(tensor.shape)}.pt")
+                print(f"Saving {tensor.shape} to \"{file_name}\"")
+                torch.save(tensor.cpu(), file_name)
+				
 	def forward(self, input_seq, input_labels, input_len1):
 		'''
 			Args:
@@ -278,7 +284,7 @@ class Seq2SeqModel(nn.Module):
 		out = self.out(h)
 
 		self.loss = self.criterion(out, input_labels)
-
+		print("*******************")
 		self.loss.backward()
 		if self.config.max_grad_norm > 0:
 			torch.nn.utils.clip_grad_norm_(self.params, self.config.max_grad_norm)
@@ -292,7 +298,6 @@ class Seq2SeqModel(nn.Module):
 		src = data['src']
 		trg = data['trg']
 		labels = data['labels']
-		idx = data['idx']
 
 		if self.config.embedding == 'bert' or self.config.embedding == 'roberta':
 			input_seq_src, input_len_src = self.embedding_src(src)
@@ -334,30 +339,7 @@ def build_model(config, voc1, voc2, device, logger):
 
 	return model
 
-#cartography{
-def save_tensor(tensor, directory, file_name, epoch):
-	
-	path = 'outputs_folder/cartographyOut'
-	os.makedirs(path, exist_ok=True)
-	file_name = os.path.join(path, f"epoch{epoch}_{file_name}_{list(tensor.shape)}.pt")
-	print(f"Saving {tensor.shape} to \"{file_name}\"")
-	torch.save(tensor.cpu(), file_name)
 
-def extract_after_epoch_logits():
-	after_epoch_train_idxs = []
-	after_epoch_train_logits = []
-	model.eval()
-	for step, inputs in tqdm(enumerate(epoch_iterator), desc=f"after epoch[{epoch}] logits", total=len(epoch_iterator)):
-		inputs = self._prepare_inputs(inputs)
-		after_epoch_train_idxs.extend(inputs["idx"])
-		with torch.no_grad():
-			loss, outputs = self.compute_loss(model, inputs, return_outputs=True)
-			after_epoch_train_logits.append(outputs.logits.clone().detach().cpu())
-	model.train()
-	save_tensor(torch.cat(after_epoch_train_logits), "training_dynamics_after_epoch", "after_epoch_train_logits")
-	save_tensor(torch.stack(after_epoch_train_idxs), "training_dynamics_after_epoch", "after_epoch_train_idxs")
-
-#cartography}	
 
 def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_dataloader, voc1, voc2, device, config, logger, min_train_loss=float('inf'), min_val_loss=float('inf'), min_test_loss=float('inf'), 
 				min_gen_loss=float('inf'), max_train_acc = 0.0, max_val_acc = 0.0, max_test_acc = 0.0, max_gen_acc = 0.0, max_train_auc = 0.0, max_val_auc = 0.0, max_test_auc = 0.0, max_gen_auc = 0.0, best_epoch = 0):
@@ -368,13 +350,6 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 	estop_count=0
 	
 	for epoch in range(1, config.epochs + 1):
-
-        #cartography{
-		train_logits = []
-		train_idxs = []
-		train_labels = []
-        #cartography}
-
 		od = OrderedDict()
 		od['Epoch'] = epoch
 		print_log(logger, od)
@@ -393,7 +368,6 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 		for data in train_dataloader:
 			src = data['src']
 			trg = data['trg']
-			idx = data['idx']
 
 			sent_srcs = sents_to_idx(voc1, data['src'], config.max_length)
 			sent_trgs = sents_to_idx(voc2, data['trg'], config.max_length)
@@ -403,16 +377,8 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 
 			model.train()
 
-
 			outs, loss = model.trainer(src, trg, sent_src_var, sent_trg_var, labels, input_len_src, input_len_trg, config, device, logger)
 			train_loss_epoch += loss
-
-            #cartography{
-			train_logits.append(outs.data)
-			train_idxs.extend(idx)
-			train_labels.extend(labels)
-            #cartography}
-
 
 			y_scores.append(outs.data[:, 1])
 			y.append(labels)
@@ -430,18 +396,10 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 			batch_num += 1
 			print("Completed {} / {}...".format(batch_num, total_batches), end = '\r', flush = True)
 
-
-		#cartography
-		save_tensor(torch.cat(train_logits), "training_dynamics", "train_logits", epoch)
-		save_tensor(torch.stack(train_idxs), "training_dynamics", "train_idxs", epoch)
-		save_tensor(torch.stack(train_labels), "training_dynamics", "train_labels", epoch)
-		print("---------------------------------training dynamics saved---------------------------------------")
-		#cartography
-
 		train_loss_epoch = train_loss_epoch/len(train_dataloader)
 		y_scores, y = torch.cat(y_scores, dim=0), torch.cat(y, dim=0)
 		train_auc_epoch = roc_auc_score(y, y_scores)
-		
+
 
 		wandb.log({"train loss per epoch": train_loss_epoch})
 

@@ -21,7 +21,8 @@ class TextDataset(Dataset):
 
 	'''
 
-	def __init__(self, data_path='./data/', dataset='cogs', datatype='train', max_length=60, is_debug=False, to_sort=False):
+	def __init__(self, data_path='./data', dataset='cogs', datatype='train', max_length=60, is_debug=False, to_sort=False):
+		# data_path = '/content/drive/MyDrive/DataLab/turkeyproject/Code/data'
 		if datatype=='train':
 			file_path = os.path.join(data_path, dataset, 'train.tsv')
 		elif datatype=='dev':
@@ -62,7 +63,7 @@ class TextDataset(Dataset):
 		trg = str(self.trg[idx])
 		labels = int(self.labels[idx])
 	
-		return {'src': src, 'trg': trg, 'labels': labels}
+		return {'src': src, 'trg': trg, 'labels': labels, 'idx':idx}
 
 	def curb_to_length(self, string):
 		return ' '.join(string.strip().split()[:self.max_length])
