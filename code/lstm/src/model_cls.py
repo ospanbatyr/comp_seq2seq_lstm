@@ -277,7 +277,10 @@ class Seq2SeqModel(nn.Module):
 
 		out = self.out(h)
 
-		self.loss = self.criterion(out, input_labels)
+		if device is not None:
+			self.loss = self.criterion(out, input_labels.to(device))
+		else:
+			self.loss = self.criterion(out, input_labels)
 
 		self.loss.backward()
 		if self.config.max_grad_norm > 0:
@@ -285,7 +288,7 @@ class Seq2SeqModel(nn.Module):
 
 		self.optimizer.step()
 
-		return out, self.loss.item()
+		return out.detach().cpu(), self.loss.item()
 
 
 	def evaluate(self, data, input_seq_src, input_seq_trg, input_len_src, input_len_trg):
@@ -318,11 +321,13 @@ class Seq2SeqModel(nn.Module):
 			h = self.fc1(encoder_outputs) # TODO check dimensions
 			h = self.relu(h) # TODO check dimensions
 			out = self.out(h)
-
-			loss = self.criterion(out, labels) 
-
+			
+			if self.device is not None:
+				loss = self.criterion(out, labels.to(self.device))
+			else:
+				loss = self.criterion(out, labels)
 		
-		return out, loss
+		return out.detach().cpu(), loss.item()
 
 
 def build_model(config, voc1, voc2, device, logger):
