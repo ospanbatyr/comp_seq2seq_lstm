@@ -17,11 +17,11 @@ except ImportError:
 import wandb
 from tqdm import tqdm
 
-from src.args import build_parser
-from src.utils.helper_cls import *
-from src.utils.logger import get_logger, print_log, store_results, store_val_results
-from src.dataloader_cls import TextDataset
-from src.model_cls import build_model, train_model, run_validation
+from drive.MyDrive.DataLab.turkeyproject.Code.src.args import build_parser
+from drive.MyDrive.DataLab.turkeyproject.Code.src.utils.helper_cls import *
+from drive.MyDrive.DataLab.turkeyproject.Code.src.utils.logger import get_logger, print_log, store_results, store_val_results
+from drive.MyDrive.DataLab.turkeyproject.Code.src.dataloader_cls import TextDataset
+from drive.MyDrive.DataLab.turkeyproject.Code.src.model_t import build_model, train_model, run_validation
 
 global log_folder
 global model_folder
@@ -30,8 +30,8 @@ global data_path
 
 log_folder = 'logs'
 model_folder = 'models'
-outputs_folder = 'outputs'
-result_folder = './out/'
+outputs_folder = '/content/drive/MyDrive/DataLab/turkeyproject/Code/outputs'
+result_folder = '/content/drive/MyDrive/DataLab/turkeyproject/Code/out/'
 data_path = './data/'
 
 def load_data(config, logger):
