@@ -24,6 +24,7 @@ from collections import OrderedDict
 from pprint import pprint
 from sklearn.metrics import roc_auc_score
 from copy import deepcopy
+from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 import wandb
 
@@ -38,6 +39,8 @@ class Seq2SeqModel(nn.Module):
 		self.EOS_tag = EOS_tag
 		self.SOS_tag = SOS_tag
 		self.logger = logger
+
+		self.norm0 = nn.LayerNorm(self.config.emb1_size)
 
 		if self.config.embedding == 'bert':
 			self.embedding_src = BertEncoder(self.config.emb_name, self.device, self.config.freeze_emb)
@@ -84,9 +87,13 @@ class Seq2SeqModel(nn.Module):
 
 		self.logger.debug('Encoders Built...')
 		
+		self.norm1 = nn.LayerNorm(self.config.hidden_size * 2)
 		self.fc1 = nn.Linear(self.config.hidden_size * 2, self.config.hidden_size)
 		self.relu = nn.ReLU()
-		self.out = nn.Linear(self.config.hidden_size, 2)
+		self.norm2 = nn.LayerNorm(self.config.hidden_size)
+		self.fc2 = nn.Linear(self.config.hidden_size, self.config.hidden_size // 2)
+		self.norm3 = nn.LayerNorm(self.config.hidden_size // 2)
+		self.out = nn.Linear(self.config.hidden_size // 2, 2)
 
 		self.logger.debug('Fully connected layers initialized ...')
 
@@ -220,6 +227,8 @@ class Seq2SeqModel(nn.Module):
 				self.optimizer = optim.SGD(
 					[{"params": self.non_emb_params, "lr": self.config.lr}]
 				)
+		
+		self.scheduler = ReduceLROnPlateau(self.optimizer, "min", factor=0.5, patience=15)
 	
 	def forward(self, input_seq, input_labels, input_len1):
 		'''
@@ -253,9 +262,11 @@ class Seq2SeqModel(nn.Module):
 		else:
 			sorted_seqs_src, sorted_len_src, orig_idx_src = sort_by_len(input_seq_src, input_len_src, self.device)
 			sorted_seqs_src = self.embedding_src(sorted_seqs_src)
+			sorted_seqs_src = self.norm0(sorted_seqs_src) # embedding norm
 
 			sorted_seqs_trg, sorted_len_trg, orig_idx_trg = sort_by_len(input_seq_trg, input_len_trg, self.device)
 			sorted_seqs_trg = self.embedding_trg(sorted_seqs_trg)
+			sorted_seqs_src = self.norm0(sorted_seqs_src) # embedding norm
 
 
 		# print(f"Input seq shape: {input_seq.shape}")
@@ -269,12 +280,18 @@ class Seq2SeqModel(nn.Module):
 		# print(f'encoder_outputs new shape: {encoder_outputs.shape}')
 
 		encoder_outputs = torch.cat((encoder_src_outputs, encoder_trg_outputs), 1)
-
+		
+		encoder_outputs = self.norm1(encoder_outputs)
 		h = self.fc1(encoder_outputs) # TODO check dimensions
 		# print(f'h.shape: {h.shape}')
 
 		h = self.relu(h)
 
+		h = self.norm2(h)
+		h = self.fc2(h)
+		h = self.relu(h)
+
+		h = self.norm3(h)
 		out = self.out(h)
 
 		if device is not None:
@@ -308,9 +325,11 @@ class Seq2SeqModel(nn.Module):
 		else:
 			sorted_seqs_src, sorted_len_src, orig_idx_src = sort_by_len(input_seq_src, input_len_src, self.device)
 			sorted_seqs_src = self.embedding_src(sorted_seqs_src)
+			sorted_seqs_src = self.norm0(sorted_seqs_src) # embedding norm
 
 			sorted_seqs_trg, sorted_len_trg, orig_idx_trg = sort_by_len(input_seq_trg, input_len_trg, self.device)
 			sorted_seqs_trg = self.embedding_trg(sorted_seqs_trg)
+			sorted_seqs_src = self.norm0(sorted_seqs_src) # embedding norm
 
 		with torch.no_grad():
 			encoder_outputs_src, _ = self.source_encoder(sorted_seqs_src, sorted_len_src, orig_idx_src, self.device)
@@ -320,6 +339,8 @@ class Seq2SeqModel(nn.Module):
 
 			h = self.fc1(encoder_outputs) # TODO check dimensions
 			h = self.relu(h) # TODO check dimensions
+			h = self.fc2(h)
+			h = self.relu(h)
 			out = self.out(h)
 			
 			if self.device is not None:
@@ -369,8 +390,12 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 	'''
 		Add Docstring
 	'''
-	
 	estop_count=0
+	
+	#cartography{
+	columns = ['src', 'target', 'epoch', 'label', 'idx']
+	df = pd.DataFrame(columns=columns) 
+	#cartography
 	
 	for epoch in range(1, config.epochs + 1):
 
@@ -378,6 +403,10 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 		train_logits = []
 		train_idxs = []
 		train_labels = []
+		train_src = []
+		train_target = []
+		epoch_index = []
+		epoch_label = []
         #cartography}
 
 		od = OrderedDict()
@@ -416,7 +445,9 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 			train_logits.append(outs.data)
 			train_idxs.extend(idx)
 			train_labels.extend(labels)
-            #cartography}
+			train_src.append(src)
+			train_target.append(trg)
+	    #cartography}
 
 
 			y_scores.append(outs.data[:, 1])
@@ -436,17 +467,44 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 			print("Completed {} / {}...".format(batch_num, total_batches), end = '\r', flush = True)
 
 
+
+		#cartography
+
+		epoch_lst = [epoch]*len(trg)
+		# print(len(src))
+		# print(len(trg))
+		# print(len(epoch_lst))
+		# print(len(data['idx']))
+		# print(len(data['labels']))
+		# print(len(train_logits))
+
+		new_df = pd.DataFrame(   
+			{'src': src,
+     		'target': trg,
+     		'label': data['labels'],
+    		'epoch':epoch_lst,
+    		'idx': data['idx'].tolist()
+    		}, columns =columns) 	
+
+		df = df.append(new_df, ignore_index=True)
+		#cartography
 		#cartography
 		save_tensor(torch.cat(train_logits), "training_dynamics", "train_logits", epoch)
 		save_tensor(torch.stack(train_idxs), "training_dynamics", "train_idxs", epoch)
 		save_tensor(torch.stack(train_labels), "training_dynamics", "train_labels", epoch)
+
+		df.to_excel("/content/drive/MyDrive/DataLab/turkeyproject/Code/outputs/output.xlsx") 
+		#print("---------------------------------training dynamics saved---------------------------------------")
+
 		print("---------------------------------training dynamics saved---------------------------------------")
 		#cartography
 
 		train_loss_epoch = train_loss_epoch/len(train_dataloader)
 		y_scores, y = torch.cat(y_scores, dim=0), torch.cat(y, dim=0)
 		train_auc_epoch = roc_auc_score(y, y_scores)
+
 		
+		model.scheduler.step(train_loss_epoch) # just to overfit
 
 		wandb.log({"train loss per epoch": train_loss_epoch})
 
@@ -465,6 +523,8 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 
 		if config.dev_set and (config.dev_always or epoch >= config.epochs - (config.eval_last_n - 1)):
 			val_loss_epoch, val_acc_epoch, val_auc_epoch = run_validation(config=config, model=model, dataloader=val_dataloader, disp_tok='DEV', voc1=voc1, voc2=voc2, device=device, logger=logger, epoch_num = epoch, validation = True)
+			
+			#model.scheduler.step(val_loss_epoch)
 			wandb.log({"validation loss per epoch": val_loss_epoch})
 			wandb.log({"validation accuracy": val_acc_epoch})
 			wandb.log({"validation roc auc score": val_auc_epoch})
@@ -623,8 +683,9 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 	logger.info('Training Completed for {} epochs'.format(config.epochs))
 
 	if config.results:
-		store_results(config, max_train_acc, max_val_acc, max_test_acc, max_gen_acc, min_train_loss, min_val_loss, min_test_loss, min_gen_loss, best_epoch)
-		logger.info('Scores saved at {}'.format(config.result_path))
+		pass
+		#store_results(config, max_train_acc, max_val_acc, max_test_acc, max_gen_acc, min_train_loss, min_val_loss, min_test_loss, min_gen_loss, best_epoch)
+		#logger.info('Scores saved at {}'.format(config.result_path))
 
 	return max_val_acc
 
@@ -711,6 +772,8 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 	y_scores, y = torch.cat(y_scores, dim=0), torch.cat(y, dim=0)
 	val_acc_epoch = val_acc_epoch_cnt/val_acc_epoch_tot
 	val_auc_epoch = roc_auc_score(y, y_scores)
+
+	
 
 	return val_loss_epoch/(len(dataloader) * config.batch_size), val_acc_epoch, val_auc_epoch
 
