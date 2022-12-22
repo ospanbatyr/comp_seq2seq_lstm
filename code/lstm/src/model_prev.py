@@ -13,7 +13,7 @@ import torch.multiprocessing
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from transformers import AdamW
-# from gensim import models
+from gensim import models
 from src.components.encoder import Encoder
 from src.components.contextual_embeddings import BertEncoder, RobertaEncoder
 from src.utils.sentence_processing import *
@@ -24,7 +24,6 @@ from collections import OrderedDict
 from pprint import pprint
 from sklearn.metrics import roc_auc_score
 from copy import deepcopy
-from torch.optim.lr_scheduler import ReduceLROnPlateau
 
 import wandb
 
@@ -39,8 +38,6 @@ class Seq2SeqModel(nn.Module):
 		self.EOS_tag = EOS_tag
 		self.SOS_tag = SOS_tag
 		self.logger = logger
-
-		self.norm0 = nn.LayerNorm(self.config.emb1_size)
 
 		if self.config.embedding == 'bert':
 			self.embedding_src = BertEncoder(self.config.emb_name, self.device, self.config.freeze_emb)
@@ -87,13 +84,9 @@ class Seq2SeqModel(nn.Module):
 
 		self.logger.debug('Encoders Built...')
 		
-		self.norm1 = nn.LayerNorm(self.config.hidden_size * 2)
 		self.fc1 = nn.Linear(self.config.hidden_size * 2, self.config.hidden_size)
 		self.relu = nn.ReLU()
-		self.norm2 = nn.LayerNorm(self.config.hidden_size)
-		self.fc2 = nn.Linear(self.config.hidden_size, self.config.hidden_size // 2)
-		self.norm3 = nn.LayerNorm(self.config.hidden_size // 2)
-		self.out = nn.Linear(self.config.hidden_size // 2, 2)
+		self.out = nn.Linear(self.config.hidden_size, 2)
 
 		self.logger.debug('Fully connected layers initialized ...')
 
@@ -137,14 +130,13 @@ class Seq2SeqModel(nn.Module):
 
 	# TODO - Change this as it only forms embeddings for emb1
 	def _form_embeddings(self, file_path):
-		pass
-	#	weights_all = models.KeyedVectors.load_word2vec_format(file_path, limit=200000, binary=True)
-	#	weight_req  = torch.randn(self.voc1.nwords, self.config.emb1_size)
-	#	for key, value in self.voc1.id2w.items():
-	#		if value in weights_all:
-	#			weight_req[key] = torch.FloatTensor(weights_all[value])
-	#
-	#	return weight_req	
+		weights_all = models.KeyedVectors.load_word2vec_format(file_path, limit=200000, binary=True)
+		weight_req  = torch.randn(self.voc1.nwords, self.config.emb1_size)
+		for key, value in self.voc1.id2w.items():
+			if value in weights_all:
+				weight_req[key] = torch.FloatTensor(weights_all[value])
+
+		return weight_req	
 
 	def _initialize_optimizer(self):
 		self.params =   list()
@@ -228,9 +220,13 @@ class Seq2SeqModel(nn.Module):
 				self.optimizer = optim.SGD(
 					[{"params": self.non_emb_params, "lr": self.config.lr}]
 				)
-		
-		self.scheduler = ReduceLROnPlateau(self.optimizer, "min", factor=0.5, patience=15)
-	
+	def save_tensor(tensor, directory, file_name):
+                path = f"{args.output_dir}/{directory}"
+                os.makedirs(path, exist_ok=True)
+                file_name = os.path.join(path, f"epoch{epoch}_{file_name}_{list(tensor.shape)}.pt")
+                print(f"Saving {tensor.shape} to \"{file_name}\"")
+                torch.save(tensor.cpu(), file_name)
+				
 	def forward(self, input_seq, input_labels, input_len1):
 		'''
 			Args:
@@ -241,7 +237,7 @@ class Seq2SeqModel(nn.Module):
 			Returns:
 				out (tensor) : Probabilities of each output label for each point | size : [batch_size x num_labels]
 		'''
-	
+
 	def trainer(self, source, target, input_seq_src, input_seq_trg, input_labels, input_len_src, input_len_trg, config, device=None, logger=None):
 		'''
 			Args:
@@ -263,11 +259,9 @@ class Seq2SeqModel(nn.Module):
 		else:
 			sorted_seqs_src, sorted_len_src, orig_idx_src = sort_by_len(input_seq_src, input_len_src, self.device)
 			sorted_seqs_src = self.embedding_src(sorted_seqs_src)
-			sorted_seqs_src = self.norm0(sorted_seqs_src) # embedding norm
 
 			sorted_seqs_trg, sorted_len_trg, orig_idx_trg = sort_by_len(input_seq_trg, input_len_trg, self.device)
 			sorted_seqs_trg = self.embedding_trg(sorted_seqs_trg)
-			sorted_seqs_src = self.norm0(sorted_seqs_src) # embedding norm
 
 
 		# print(f"Input seq shape: {input_seq.shape}")
@@ -281,45 +275,29 @@ class Seq2SeqModel(nn.Module):
 		# print(f'encoder_outputs new shape: {encoder_outputs.shape}')
 
 		encoder_outputs = torch.cat((encoder_src_outputs, encoder_trg_outputs), 1)
-		
-		encoder_outputs = self.norm1(encoder_outputs)
+
 		h = self.fc1(encoder_outputs) # TODO check dimensions
 		# print(f'h.shape: {h.shape}')
 
 		h = self.relu(h)
 
-		h = self.norm2(h)
-		h = self.fc2(h)
-		h = self.relu(h)
-
-		h = self.norm3(h)
 		out = self.out(h)
-		
-		input_labels = input_labels.to(device)
-		loss = self.criterion(out, input_labels)
-		input_labels = input_labels.detach().cpu()
 
-
-		if device is not None:
-			self.loss = self.criterion(out, input_labels.to(device))
-		else:
-			self.loss = self.criterion(out, input_labels)
-
+		self.loss = self.criterion(out, input_labels)
+		print("*******************")
 		self.loss.backward()
 		if self.config.max_grad_norm > 0:
 			torch.nn.utils.clip_grad_norm_(self.params, self.config.max_grad_norm)
 
 		self.optimizer.step()
 
-		return out.detach().cpu(), self.loss.item()
-
+		return out, self.loss.item()
 
 
 	def evaluate(self, data, input_seq_src, input_seq_trg, input_len_src, input_len_trg):
 		src = data['src']
 		trg = data['trg']
 		labels = data['labels']
-		idx = data['idx']
 
 		if self.config.embedding == 'bert' or self.config.embedding == 'roberta':
 			input_seq_src, input_len_src = self.embedding_src(src)
@@ -332,11 +310,9 @@ class Seq2SeqModel(nn.Module):
 		else:
 			sorted_seqs_src, sorted_len_src, orig_idx_src = sort_by_len(input_seq_src, input_len_src, self.device)
 			sorted_seqs_src = self.embedding_src(sorted_seqs_src)
-			sorted_seqs_src = self.norm0(sorted_seqs_src) # embedding norm
 
 			sorted_seqs_trg, sorted_len_trg, orig_idx_trg = sort_by_len(input_seq_trg, input_len_trg, self.device)
 			sorted_seqs_trg = self.embedding_trg(sorted_seqs_trg)
-			sorted_seqs_src = self.norm0(sorted_seqs_src) # embedding norm
 
 		with torch.no_grad():
 			encoder_outputs_src, _ = self.source_encoder(sorted_seqs_src, sorted_len_src, orig_idx_src, self.device)
@@ -346,16 +322,12 @@ class Seq2SeqModel(nn.Module):
 
 			h = self.fc1(encoder_outputs) # TODO check dimensions
 			h = self.relu(h) # TODO check dimensions
-			h = self.fc2(h)
-			h = self.relu(h)
 			out = self.out(h)
-			
-			if self.device is not None:
-				loss = self.criterion(out, labels.to(self.device))
-			else:
-				loss = self.criterion(out, labels)
+
+			loss = self.criterion(out, labels) 
+
 		
-		return out.detach().cpu(), loss.item()
+		return out, loss
 
 
 def build_model(config, voc1, voc2, device, logger):
@@ -367,55 +339,17 @@ def build_model(config, voc1, voc2, device, logger):
 
 	return model
 
-#cartography{
-def save_tensor(tensor, directory, file_name, epoch):
-	
-	path = 'outputs_folder/cartographyOut'
-	os.makedirs(path, exist_ok=True)
-	file_name = os.path.join(path, f"epoch{epoch}_{file_name}_{list(tensor.shape)}.pt")
-	print(f"Saving {tensor.shape} to \"{file_name}\"")
-	torch.save(tensor.cpu(), file_name)
 
-def extract_after_epoch_logits():
-	after_epoch_train_idxs = []
-	after_epoch_train_logits = []
-	model.eval()
-	for step, inputs in tqdm(enumerate(epoch_iterator), desc=f"after epoch[{epoch}] logits", total=len(epoch_iterator)):
-		inputs = self._prepare_inputs(inputs)
-		after_epoch_train_idxs.extend(inputs["idx"])
-		with torch.no_grad():
-			loss, outputs = self.compute_loss(model, inputs, return_outputs=True)
-			after_epoch_train_logits.append(outputs.logits.clone().detach().cpu())
-	model.train()
-	save_tensor(torch.cat(after_epoch_train_logits), "training_dynamics_after_epoch", "after_epoch_train_logits")
-	save_tensor(torch.stack(after_epoch_train_idxs), "training_dynamics_after_epoch", "after_epoch_train_idxs")
-#cartography}	
 
 def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_dataloader, voc1, voc2, device, config, logger, min_train_loss=float('inf'), min_val_loss=float('inf'), min_test_loss=float('inf'), 
 				min_gen_loss=float('inf'), max_train_acc = 0.0, max_val_acc = 0.0, max_test_acc = 0.0, max_gen_acc = 0.0, max_train_auc = 0.0, max_val_auc = 0.0, max_test_auc = 0.0, max_gen_auc = 0.0, best_epoch = 0):
 	'''
 		Add Docstring
 	'''
+	
 	estop_count=0
 	
-	#cartography{
-	columns = ['src', 'target', 'epoch', 'label', 'idx']
-	df = pd.DataFrame(columns=columns) 
-	#cartography
-	
 	for epoch in range(1, config.epochs + 1):
-
-    #cartography{
-		train_logits = []
-		train_idxs = []
-		train_labels = []
-		train_src = []
-		train_target = []
-		epoch_index = []
-		epoch_label = []
-    #cartography}
-
-		torch.cuda.empty_cache()
 		od = OrderedDict()
 		od['Epoch'] = epoch
 		print_log(logger, od)
@@ -434,7 +368,6 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 		for data in train_dataloader:
 			src = data['src']
 			trg = data['trg']
-			idx = data['idx']
 
 			sent_srcs = sents_to_idx(voc1, data['src'], config.max_length)
 			sent_trgs = sents_to_idx(voc2, data['trg'], config.max_length)
@@ -444,21 +377,10 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 
 			model.train()
 
-
 			outs, loss = model.trainer(src, trg, sent_src_var, sent_trg_var, labels, input_len_src, input_len_trg, config, device, logger)
 			train_loss_epoch += loss
 
-      #cartography{
-			train_logits.append(outs.data)
-			train_idxs.extend(idx)
-			train_labels.extend(labels)
-			train_src.append(src)
-			train_target.append(trg)
-	    #cartography}
-
-
 			y_scores.append(outs.data[:, 1])
-
 			y.append(labels)
 
 			wandb.log({"train loss per step": loss})
@@ -468,56 +390,16 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 
 				_, preds = torch.max(outs.data, 1)
 				
-				if device is not None:
-					preds = preds.detach().cpu()
-				
-				#print(f"preds.shape: {preds.shape}, type(labels): {type(labels)}")
-				#print(f"labels.shape: {labels.shape}")
 				train_acc_epoch_cnt += (preds == labels).sum().item()
 				train_acc_epoch_tot += labels.size(0)
 
 			batch_num += 1
 			print("Completed {} / {}...".format(batch_num, total_batches), end = '\r', flush = True)
 
-
-
-		#cartography
-
-		epoch_lst = [epoch]*len(trg)
-		# print(len(src))
-		# print(len(trg))
-		# print(len(epoch_lst))
-		# print(len(data['idx']))
-		# print(len(data['labels']))
-		# print(len(train_logits))
-
-		new_df = pd.DataFrame(   
-			{'src': src,
-     		'target': trg,
-     		'label': data['labels'],
-    		'epoch':epoch_lst,
-    		'idx': data['idx'].tolist()
-    		}, columns =columns) 	
-
-		df = df.append(new_df, ignore_index=True)
-		#cartography
-		#cartography
-		save_tensor(torch.cat(train_logits), "training_dynamics", "train_logits", epoch)
-		save_tensor(torch.stack(train_idxs), "training_dynamics", "train_idxs", epoch)
-		save_tensor(torch.stack(train_labels), "training_dynamics", "train_labels", epoch)
-
-		df.to_excel("/content/drive/MyDrive/DataLab/turkeyproject/Code/outputs/output.xlsx") 
-		#print("---------------------------------training dynamics saved---------------------------------------")
-
-		print("---------------------------------training dynamics saved---------------------------------------")
-		#cartography
-
 		train_loss_epoch = train_loss_epoch/len(train_dataloader)
 		y_scores, y = torch.cat(y_scores, dim=0), torch.cat(y, dim=0)
 		train_auc_epoch = roc_auc_score(y, y_scores)
 
-		
-		model.scheduler.step(train_loss_epoch) # just to overfit
 
 		wandb.log({"train loss per epoch": train_loss_epoch})
 
@@ -536,8 +418,6 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 
 		if config.dev_set and (config.dev_always or epoch >= config.epochs - (config.eval_last_n - 1)):
 			val_loss_epoch, val_acc_epoch, val_auc_epoch = run_validation(config=config, model=model, dataloader=val_dataloader, disp_tok='DEV', voc1=voc1, voc2=voc2, device=device, logger=logger, epoch_num = epoch, validation = True)
-			
-			#model.scheduler.step(val_loss_epoch)
 			wandb.log({"validation loss per epoch": val_loss_epoch})
 			wandb.log({"validation accuracy": val_acc_epoch})
 			wandb.log({"validation roc auc score": val_auc_epoch})
@@ -696,9 +576,8 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 	logger.info('Training Completed for {} epochs'.format(config.epochs))
 
 	if config.results:
-		pass
-		#store_results(config, max_train_acc, max_val_acc, max_test_acc, max_gen_acc, min_train_loss, min_val_loss, min_test_loss, min_gen_loss, best_epoch)
-		#logger.info('Scores saved at {}'.format(config.result_path))
+		store_results(config, max_train_acc, max_val_acc, max_test_acc, max_gen_acc, min_train_loss, min_val_loss, min_test_loss, min_gen_loss, best_epoch)
+		logger.info('Scores saved at {}'.format(config.result_path))
 
 	return max_val_acc
 
@@ -734,7 +613,7 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 
 		src = data['src']
 		trg = data['trg']
-		labels = torch.LongTensor(data['labels'])
+		labels = data['labels']
 
 		sent_src_var, sent_trg_var, input_len_src, input_len_trg = process_batch_cls(sent_srcs, sent_trgs, voc1, voc2, device)
 
@@ -786,7 +665,6 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 	val_acc_epoch = val_acc_epoch_cnt/val_acc_epoch_tot
 	val_auc_epoch = roc_auc_score(y, y_scores)
 
-	
-
 	return val_loss_epoch/(len(dataloader) * config.batch_size), val_acc_epoch, val_auc_epoch
+
 

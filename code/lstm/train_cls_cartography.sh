@@ -109,19 +109,8 @@ WAIT 1 MINUTE, WILL BE CONNECT ADDRESS APPEARS!
 "
 
 # DON'T USE ADDRESS BELOW. 
-# DO USE TOKEN BELOW
-for lr in 0.0001
-do
-	for DEPTH in 6
-	do
-		for HIDDEN in 1024
-		do
-			printf "-------------------------------------------HYPERPARAMETER CONFIG---------------------------------------------------------"
-			printf "DEPTH: %d HIDDEN: %d" "$DEPTH" "$HIDDEN"
-			python -u -m src.main_cls -mode train -project_name test_runs_cls -hidden_size $HIDDEN -model_selector_set val -pretrained_model_name none -finetune_data_voc none -dev_set -no-test_set -no-gen_set -dataset simple_split_tsv_cls -dev_always -no-test_always -no-gen_always -epochs 500 -save_model -show_train_acc -embedding random -no-freeze_emb -no-freeze_emb2 -no-freeze_lstm_encoder -no-freeze_lstm_decoder -no-freeze_fc -batch_size 128 -lr $lr -emb_lr 0.001 -dropout 0 -no_beam_decode -run_name RUN-train_try_cls -gpu 0 -topk 1 -depth $DEPTH
-			printf "-------------------------------------------------------------------------------------------------------------------------"
-		done
-	done
-done
+# DO USE TOKEN BELOW 
+python -u -m src.main_cls -mode train -project_name test_runs_cls -hidden_size 128 -model_selector_set val -pretrained_model_name none -finetune_data_voc none -dev_set -no-test_set -no-gen_set -dataset simple_split_tsv_cls -dev_always -no-test_always -no-gen_always -epochs 150 -save_model -show_train_acc -embedding random -no-freeze_emb -no-freeze_emb2 -no-freeze_lstm_encoder -no-freeze_lstm_decoder -no-freeze_fc -batch_size 256 -lr 0.008 -emb_lr 0.001 -dropout 0.1 -no_beam_decode -run_name RUN-train_try_cls -gpu 0 -topk 1
+
 
 # todo change epoch

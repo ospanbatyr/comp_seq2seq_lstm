@@ -15,6 +15,7 @@ except ImportError:
 	import pickle
 
 import wandb
+from tqdm import tqdm
 
 from src.args import build_parser
 from src.utils.helper_cls import *
@@ -132,7 +133,7 @@ def main():
 	if config.mode == 'test' and config.pretrained_model_name == 'none':
 		config.pretrained_model_name == run_name
 
-	wandb.init(project=config.project_name, entity='osmanbatur', mode="disabled")
+	wandb.init(project=config.project_name, entity='osmanbatur') # taninzrt
 	wandb.init(config={"lr": 0.1})
 	wandb.config.epochs = 4
 	wandb.config.update(args, allow_val_change=True) # adds all of the arguments as config variables
