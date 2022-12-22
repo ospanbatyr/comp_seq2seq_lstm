@@ -13,7 +13,7 @@ import torch.multiprocessing
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 from transformers import AdamW
-from gensim import models
+# from gensim import models
 from src.components.encoder import Encoder
 from src.components.contextual_embeddings import BertEncoder, RobertaEncoder
 from src.utils.sentence_processing import *
@@ -137,13 +137,14 @@ class Seq2SeqModel(nn.Module):
 
 	# TODO - Change this as it only forms embeddings for emb1
 	def _form_embeddings(self, file_path):
-		weights_all = models.KeyedVectors.load_word2vec_format(file_path, limit=200000, binary=True)
-		weight_req  = torch.randn(self.voc1.nwords, self.config.emb1_size)
-		for key, value in self.voc1.id2w.items():
-			if value in weights_all:
-				weight_req[key] = torch.FloatTensor(weights_all[value])
-
-		return weight_req	
+		pass
+	#	weights_all = models.KeyedVectors.load_word2vec_format(file_path, limit=200000, binary=True)
+	#	weight_req  = torch.randn(self.voc1.nwords, self.config.emb1_size)
+	#	for key, value in self.voc1.id2w.items():
+	#		if value in weights_all:
+	#			weight_req[key] = torch.FloatTensor(weights_all[value])
+	#
+	#	return weight_req	
 
 	def _initialize_optimizer(self):
 		self.params =   list()
@@ -240,7 +241,7 @@ class Seq2SeqModel(nn.Module):
 			Returns:
 				out (tensor) : Probabilities of each output label for each point | size : [batch_size x num_labels]
 		'''
-
+	
 	def trainer(self, source, target, input_seq_src, input_seq_trg, input_labels, input_len_src, input_len_trg, config, device=None, logger=None):
 		'''
 			Args:
@@ -293,6 +294,11 @@ class Seq2SeqModel(nn.Module):
 
 		h = self.norm3(h)
 		out = self.out(h)
+		
+		input_labels = input_labels.to(device)
+		loss = self.criterion(out, input_labels)
+		input_labels = input_labels.detach().cpu()
+
 
 		if device is not None:
 			self.loss = self.criterion(out, input_labels.to(device))
@@ -306,6 +312,7 @@ class Seq2SeqModel(nn.Module):
 		self.optimizer.step()
 
 		return out.detach().cpu(), self.loss.item()
+
 
 
 	def evaluate(self, data, input_seq_src, input_seq_trg, input_len_src, input_len_trg):
@@ -382,7 +389,6 @@ def extract_after_epoch_logits():
 	model.train()
 	save_tensor(torch.cat(after_epoch_train_logits), "training_dynamics_after_epoch", "after_epoch_train_logits")
 	save_tensor(torch.stack(after_epoch_train_idxs), "training_dynamics_after_epoch", "after_epoch_train_idxs")
-
 #cartography}	
 
 def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_dataloader, voc1, voc2, device, config, logger, min_train_loss=float('inf'), min_val_loss=float('inf'), min_test_loss=float('inf'), 
@@ -399,7 +405,7 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 	
 	for epoch in range(1, config.epochs + 1):
 
-        #cartography{
+    #cartography{
 		train_logits = []
 		train_idxs = []
 		train_labels = []
@@ -407,8 +413,9 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 		train_target = []
 		epoch_index = []
 		epoch_label = []
-        #cartography}
+    #cartography}
 
+		torch.cuda.empty_cache()
 		od = OrderedDict()
 		od['Epoch'] = epoch
 		print_log(logger, od)
@@ -441,7 +448,7 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 			outs, loss = model.trainer(src, trg, sent_src_var, sent_trg_var, labels, input_len_src, input_len_trg, config, device, logger)
 			train_loss_epoch += loss
 
-            #cartography{
+      #cartography{
 			train_logits.append(outs.data)
 			train_idxs.extend(idx)
 			train_labels.extend(labels)
@@ -451,6 +458,7 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 
 
 			y_scores.append(outs.data[:, 1])
+
 			y.append(labels)
 
 			wandb.log({"train loss per step": loss})
@@ -460,6 +468,11 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 
 				_, preds = torch.max(outs.data, 1)
 				
+				if device is not None:
+					preds = preds.detach().cpu()
+				
+				#print(f"preds.shape: {preds.shape}, type(labels): {type(labels)}")
+				#print(f"labels.shape: {labels.shape}")
 				train_acc_epoch_cnt += (preds == labels).sum().item()
 				train_acc_epoch_tot += labels.size(0)
 
@@ -721,7 +734,7 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 
 		src = data['src']
 		trg = data['trg']
-		labels = data['labels']
+		labels = torch.LongTensor(data['labels'])
 
 		sent_src_var, sent_trg_var, input_len_src, input_len_trg = process_batch_cls(sent_srcs, sent_trgs, voc1, voc2, device)
 
@@ -776,5 +789,4 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 	
 
 	return val_loss_epoch/(len(dataloader) * config.batch_size), val_acc_epoch, val_auc_epoch
-
 
