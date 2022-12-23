@@ -250,6 +250,7 @@ class Seq2SeqModel(nn.Module):
 		if use_teacher_forcing:
 			for step in range(target_len):
 				if self.config.use_attn:
+					#print(f"Encoder_outputs.shape: {encoder_outputs.shape}")
 					decoder_output, decoder_hidden, decoder_attention, _ = self.decoder(decoder_input, decoder_hidden, encoder_outputs)
 				else:
 					decoder_output, decoder_hidden = self.decoder(decoder_input, decoder_hidden)
@@ -277,7 +278,7 @@ class Seq2SeqModel(nn.Module):
 		For this function, I need to produce a mapping between the greedy decode in here and the PyTorch-Beam-Search-Decoding repo on GitHub.
 		Then, I will apply transform the beam_decode function in the repo.
 	'''
-	def beam_decode(self, src, input_seq1=None, input_seq2=None, input_len1=None, input_len2=None, validation=False, return_probs=False, beam_width=8, topk=3):
+	def beam_decode(self, src, input_seq1=None, input_seq2=None, input_len1=None, input_len2=None, validation=False, return_probs=False, beam_width=20, topk=3):
 		ex_count = input_seq1.size(1)
 
 		with torch.no_grad():
@@ -319,7 +320,7 @@ class Seq2SeqModel(nn.Module):
 				encoder_output = encoder_outputs[:, idx, :].unsqueeze(1)
 
 				# start with the start of the sentence token
-				decoder_input = torch.LongTensor([[self.SOS_token]], device=self.device)
+				decoder_input = torch.LongTensor([[self.SOS_token]]).to(self.device)
 
 				# Num of sentences to generate
 				endnodes = []
@@ -337,7 +338,7 @@ class Seq2SeqModel(nn.Module):
 				# start the beam search
 				while True:
 					# give up when decoding takes too long
-					if qsize > 2000: break
+					if qsize > 5000: break
 
 					# fetch the best node
 					score, _, n = nodes.get()
@@ -362,16 +363,17 @@ class Seq2SeqModel(nn.Module):
 
 					# print(f'Beam width: {beam_width}\n\n')
 					# print(f'topk: {topk}\n\n')
-					# print(f'Decoder output shape: {decoder_output.size()}\n\n')
-					log_prob, indexes = torch.topk(decoder_output, beam_width)
+					# print(f'Decoder output shape: {decoder_output.shape}\n\n')
+					choose = min(beam_width, decoder_output.shape[1])
+					log_prob, indexes = torch.topk(decoder_output, choose)
 					nextnodes = []
 
-					for new_k in range(beam_width):
+					for new_k in range(choose):
 						decoded_t = indexes[0][new_k].view(1, -1)
 						log_p = log_prob[0][new_k].item()
 
 						node = BeamSearchNode(decoder_hidden, n, decoded_t, n.logp + log_p, n.leng + 1)
-						score = -node.eval() * np.log2(depth) 
+						score = -node.eval() * depth
 						nextnodes.append((score, node))
 
 					for i in range(len(nextnodes)):
@@ -453,13 +455,13 @@ class Seq2SeqModel(nn.Module):
 					else:
 						loss += self.criterion(decoder_output, eos_list)
 				
-				# topv, topi = decoder_output.topk(1)
+				topv, topi = decoder_output.topk(1)
 
 				'''print(f'decoder_output.shape[0]: {decoder_output.shape[0]}')
 				max_topk = decoder_output.shape[0] # learn decoder output's shape
 				topk = min(max_topk, topk)'''
 
-				topv, topi = decoder_output.topk(topk)
+				#topv, topi = decoder_output.topk(topk)
 
 				break_flag = 1
 

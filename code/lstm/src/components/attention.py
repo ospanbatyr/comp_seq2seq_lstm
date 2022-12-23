@@ -84,6 +84,7 @@ class LuongAttnDecoderRNN(nn.Module):
 		except:
 			embedded = embedded.view(1, 1, self.embedding_size)
 
+		embedded, last_hidden = embedded.contiguous(), tuple([h.contiguous() for h in last_hidden])
 		rnn_output, hidden = self.rnn(embedded, last_hidden)
 		# Calculate attention weights from the current GRU output
 		attn_weights = self.attn(rnn_output, encoder_outputs)
