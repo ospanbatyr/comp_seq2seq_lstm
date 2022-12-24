@@ -425,7 +425,24 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 			train_src.append(src)
 			train_target.append(trg)
             #cartography}
+			epoch_lst = [epoch]*len(trg)
+			# print(len(src))
+			# print(len(trg))
+			# print(len(epoch_lst))
+			# print(len(data['idx']))
+			# print(len(data['labels']))
+			# print(len(train_logits))
 
+			new_df = pd.DataFrame(   
+				{'src': src,
+				'target': trg,
+				'label': data['labels'],
+				'epoch':epoch_lst,
+				'idx': data['idx'].tolist()
+				}, columns =columns) 	
+			df = df.append(new_df, ignore_index=True)
+
+			#cartography
 
 			y_scores.append(outs.data[:, 1])
 			y.append(labels)
@@ -444,26 +461,7 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 			print("Completed {} / {}...".format(batch_num, total_batches), end = '\r', flush = True)
 
 
-		#cartography
-		
-		epoch_lst = [epoch]*len(trg)
-		# print(len(src))
-		# print(len(trg))
-		# print(len(epoch_lst))
-		# print(len(data['idx']))
-		# print(len(data['labels']))
-		# print(len(train_logits))
 
-		new_df = pd.DataFrame(   
-			{'src': src,
-     		'target': trg,
-     		'label': data['labels'],
-    		'epoch':epoch_lst,
-    		'idx': data['idx'].tolist()
-    		}, columns =columns) 	
-		
-		df = df.append(new_df, ignore_index=True)
-		#cartography
 
 		#cartography
 		save_tensor(torch.cat(train_logits), "training_dynamics", "train_logits", epoch)
