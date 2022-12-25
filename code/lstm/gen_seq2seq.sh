@@ -59,13 +59,6 @@ conda activate cartography
 
 echo "======================="
 
-echo
-echo "============================== ENVIRONMENT VARIABLES ==============================="
-env
-echo "===================================================================================="
-echo
-echo
-
 # Set stack size to unlimited
 echo "Setting stack size to unlimited..."
 ulimit -s unlimited
@@ -82,5 +75,5 @@ echo
 
 # DON'T USE ADDRESS BELOW. 
 # DO USE TOKEN BELOW
-python -m src.main -mode test -project_name test_runs -pretrained_model_name SCAN_simple_split_seq2seq -finetune_data_voc none -no-dev_set -no-test_set -gen_set -dataset SCAN/simple_split_tsv -beam_decode -batch_size 1024 -run_name SCAN_simple_split_seq2seq_generate -gpu 0
+python -m src.main -mode test -project_name test_runs -pretrained_model_name SCAN_simple_split_seq2seq -finetune_data_voc none -no-dev_set -no-test_set -gen_set -dataset scan/simple_split_tsv -beam_decode -batch_size 1024 -run_name SCAN_simple_split_seq2seq_generate -gpu 0
 # todo change epoch

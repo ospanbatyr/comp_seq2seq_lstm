@@ -59,13 +59,6 @@ conda activate cartography
 
 echo "======================="
 
-echo
-echo "============================== ENVIRONMENT VARIABLES ==============================="
-env
-echo "===================================================================================="
-echo
-echo
-
 # Set stack size to unlimited
 echo "Setting stack size to unlimited..."
 ulimit -s unlimited
@@ -82,5 +75,5 @@ echo
 
 # DON'T USE ADDRESS BELOW. 
 # DO USE TOKEN BELOW
-python -m src.main -mode train -project_name test_runs -hidden_size 128 -depth 3 -model_selector_set val -pretrained_model_name none -finetune_data_voc none -dev_set -no-test_set -no-gen_set -dataset SCAN/simple_split_tsv -dev_always -no-test_always -no-gen_always -epochs 200 -save_model -show_train_acc -embedding random -no-freeze_emb -no-freeze_emb2 -no-freeze_lstm_encoder -no-freeze_lstm_decoder -no-freeze_fc -batch_size 256 -lr 0.008 -emb_lr 0.0005 -dropout 0.1 -no_beam_decode -early_stopping 50 -run_name SCAN_simple_split_seq2seq -gpu 0 -topk 1
+python -m src.main -mode train -project_name test_runs -hidden_size 128 -depth 3 -model_selector_set val -pretrained_model_name none -finetune_data_voc none -dev_set -no-test_set -no-gen_set -dataset scan/simple_split_tsv -dev_always -no-test_always -no-gen_always -epochs 200 -save_model -show_train_acc -embedding random -no-freeze_emb -no-freeze_emb2 -no-freeze_lstm_encoder -no-freeze_lstm_decoder -no-freeze_fc -batch_size 256 -lr 0.008 -emb_lr 0.0005 -dropout 0.1 -no_beam_decode -early_stopping 50 -run_name SCAN_simple_split_seq2seq -gpu 0 -topk 1
 # todo change epoch

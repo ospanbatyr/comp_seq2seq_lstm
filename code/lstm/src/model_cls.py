@@ -368,15 +368,13 @@ def build_model(config, voc1, voc2, device, logger):
 	return model
 
 #cartography{
-def save_tensor(tensor, directory, file_name, epoch):
-	
-	path = 'outputs_folder/cartographyOut'
+def save_tensor(tensor, directory, file_name, epoch, path):
 	os.makedirs(path, exist_ok=True)
 	file_name = os.path.join(path, f"epoch{epoch}_{file_name}_{list(tensor.shape)}.pt")
 	print(f"Saving {tensor.shape} to \"{file_name}\"")
 	torch.save(tensor.cpu(), file_name)
 
-def extract_after_epoch_logits():
+def extract_after_epoch_logits(output_path):
 	after_epoch_train_idxs = []
 	after_epoch_train_logits = []
 	model.eval()
@@ -387,8 +385,9 @@ def extract_after_epoch_logits():
 			loss, outputs = self.compute_loss(model, inputs, return_outputs=True)
 			after_epoch_train_logits.append(outputs.logits.clone().detach().cpu())
 	model.train()
-	save_tensor(torch.cat(after_epoch_train_logits), "training_dynamics_after_epoch", "after_epoch_train_logits")
-	save_tensor(torch.stack(after_epoch_train_idxs), "training_dynamics_after_epoch", "after_epoch_train_idxs")
+	path = outputs_path + '/outputs_folder/cartographyOut'
+	save_tensor(torch.cat(after_epoch_train_logits), "training_dynamics_after_epoch", "after_epoch_train_logits", path)
+	save_tensor(torch.stack(after_epoch_train_idxs), "training_dynamics_after_epoch", "after_epoch_train_idxs", path)
 #cartography}	
 
 def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_dataloader, voc1, voc2, device, config, logger, min_train_loss=float('inf'), min_val_loss=float('inf'), min_test_loss=float('inf'), 
@@ -456,7 +455,26 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 			train_target.append(trg)
 	    #cartography}
 
+			epoch_lst = [epoch]*len(trg)
+			# print(len(src))
+			# print(len(trg))
+			# print(len(epoch_lst))
+			# print(len(data['idx']))
+			# print(len(data['labels']))
+			# print(len(train_logits))
 
+			new_df = pd.DataFrame(   
+				{'src': src,
+				'target': trg,
+				'label': data['labels'],
+				'epoch':epoch_lst,
+				'idx': data['idx'].tolist()
+				}, columns =columns) 	
+			df = df.append(new_df, ignore_index=True)
+
+			#cartography
+
+			# print(f"outs.data.shape = {outs.data.shape}")
 			y_scores.append(outs.data[:, 1])
 
 			y.append(labels)
@@ -480,33 +498,13 @@ def train_model(model, train_dataloader, val_dataloader, test_dataloader, gen_da
 			print("Completed {} / {}...".format(batch_num, total_batches), end = '\r', flush = True)
 
 
-
 		#cartography
+		path = config.outputs_path + '/outputs_folder/cartographyOut'
+		save_tensor(torch.cat(train_logits), "training_dynamics", "train_logits", epoch, path)
+		save_tensor(torch.stack(train_idxs), "training_dynamics", "train_idxs", epoch, path)
+		save_tensor(torch.stack(train_labels), "training_dynamics", "train_labels", epoch, path)
 
-		epoch_lst = [epoch]*len(trg)
-		# print(len(src))
-		# print(len(trg))
-		# print(len(epoch_lst))
-		# print(len(data['idx']))
-		# print(len(data['labels']))
-		# print(len(train_logits))
-
-		new_df = pd.DataFrame(   
-			{'src': src,
-     		'target': trg,
-     		'label': data['labels'],
-    		'epoch':epoch_lst,
-    		'idx': data['idx'].tolist()
-    		}, columns =columns) 	
-
-		df = df.append(new_df, ignore_index=True)
-		#cartography
-		#cartography
-		save_tensor(torch.cat(train_logits), "training_dynamics", "train_logits", epoch)
-		save_tensor(torch.stack(train_idxs), "training_dynamics", "train_idxs", epoch)
-		save_tensor(torch.stack(train_labels), "training_dynamics", "train_labels", epoch)
-
-		df.to_excel("/content/drive/MyDrive/DataLab/turkeyproject/Code/outputs/output.xlsx") 
+		df.to_csv(f"{path}/output.csv")
 		#print("---------------------------------training dynamics saved---------------------------------------")
 
 		print("---------------------------------training dynamics saved---------------------------------------")
@@ -744,7 +742,7 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 		val_acc_epoch_cnt += (preds == labels).sum().item()
 		val_acc_epoch_tot += labels.size(0)
 		
-		y_scores.append(outs.data[:, 1])
+		y_scores.append(outs.data[:, -1])
 		y.append(labels)
 
 		if config.mode == 'test':
@@ -785,6 +783,8 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 	y_scores, y = torch.cat(y_scores, dim=0), torch.cat(y, dim=0)
 	val_acc_epoch = val_acc_epoch_cnt/val_acc_epoch_tot
 	val_auc_epoch = roc_auc_score(y, y_scores)
+
+	print(y_scores)
 
 	
 

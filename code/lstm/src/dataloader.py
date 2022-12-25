@@ -21,28 +21,42 @@ class TextDataset(Dataset):
 
 	'''
 
-	def __init__(self, data_path='./data/', dataset='cogs', datatype='train', max_length=60, is_debug=False, to_sort=False):
-		if datatype=='train':
-			file_path = os.path.join(data_path, dataset, 'train.tsv')
-		elif datatype=='dev':
-			file_path = os.path.join(data_path, dataset, 'dev.tsv')
-		elif datatype=='test':
-			file_path = os.path.join(data_path, dataset, 'test.tsv')
-		else:
-			file_path = os.path.join(data_path, dataset, 'gen.tsv')
-
+	def __init__(self, data_path='./data/', dataset='scan', datatype='train', max_length=60, is_debug=False, to_sort=False):
 		self.datatype = datatype
+		self.dataset = dataset
+		if "cfq" in dataset:
+			if datatype == "train":
+				ds = tfds.load('cfq/mcd1', split="train", as_supervised=True, batch_size=-1)
+			elif datatype == "dev":
+				ds = tfds.load('cfq/mcd1', split="validation", as_supervised=True, batch_size=-1)
+			elif datatype == "test":
+				assert False, "Use datatype value 'gen' for testing in dataloader"
+			else:
+				ds = tfds.load('cfq/mcd1', split="test", as_supervised=True, batch_size=-1)
 
-		file_df= pd.read_csv(file_path, sep='\t')
+			self.src = ds[0].numpy().astype("str")
+			self.trg = ds[1].numpy().astype("str")
 
-		self.src= file_df['Input'].values
-		self.trg= file_df['Output'].values
+		elif "scan" in dataset:
+			if datatype=='train':
+				file_path = os.path.join(data_path, dataset, 'train.tsv')
+			elif datatype=='dev':
+				file_path = os.path.join(data_path, dataset, 'dev.tsv')
+			elif datatype=='test':
+				file_path = os.path.join(data_path, dataset, 'test.tsv')
+			else:
+				file_path = os.path.join(data_path, dataset, 'gen.tsv')
+
+			file_df= pd.read_csv(file_path, sep='\t')
+
+			self.src= file_df['Input'].values
+			self.trg= file_df['Output'].values
 
 		if is_debug:
 			self.src= self.src[:5000:500]
 			self.trg= self.trg[:5000:500]
 
-		self.max_length= max_length
+		self.max_length = max_length
 
 		all_sents = zip(self.src, self.trg)
 
@@ -55,13 +69,48 @@ class TextDataset(Dataset):
 		return len(self.src)
 
 	def __getitem__(self, idx):
-		src = self.process_string(str(self.src[idx]))
-		trg = self.process_string(str(self.trg[idx]))
+		if 'cfq' in self.dataset:
+			src, trg = get_encode_decode_pair(str(self.src[idx]), str(self.trg[idx]))
+		if 'scan' in self.dataset:
+			src = self.process_string(str(self.src[idx]))
+			trg = self.process_string(str(self.trg[idx]))
 	
 		return {'src': src, 'trg': trg}
 
 	def curb_to_length(self, string):
 		return ' '.join(string.strip().split()[:self.max_length])
+
+
+	def tokenize_punctuation(text):
+		text = map(lambda c: ' %s ' % c if c in string.punctuation else c, text)
+		return ' '.join(''.join(text).split())
+
+
+	def preprocess_sparql(query):
+		"""Do various preprocessing on the SPARQL query."""
+		# Tokenize braces.
+		query = query.replace('count(*)', 'count ( * )')
+
+		tokens = []
+		for token in query.split():
+	  	# Replace 'ns:' prefixes.
+	  		if token.startswith('ns:'):
+	    			token = token[3:]
+	    			# Replace mid prefixes.
+	  		if token.startswith('m.'):
+	    			token = 'm_' + token[2:]
+	  		tokens.append(token)
+
+		return ' '.join(tokens).replace('\\n', ' ')
+
+
+	def get_encode_decode_pair(src, trg):
+		# Apply some simple preprocessing on the tokenizaton, which improves the
+		# performance of the models significantly.
+		encode_text = tokenize_punctuation(src)
+		decode_text = preprocess_sparql(trg)
+		return (encode_text, decode_text)
+
 
 	def process_string(self, string):
 		#string = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", string)
