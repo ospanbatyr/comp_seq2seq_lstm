@@ -389,20 +389,26 @@ class Seq2SeqModel(nn.Module):
 					endnodes = [nodes.get() for _ in range(topk)]
 
 				utterances = []
-				for score, n in sorted(endnodes, key=lambda x : x[0]):
-					utterance = []
-					utterance.append(n.word_id)
-					# back trace
-
-					while n.prev_node is not None:
-						n = n.prev_node
+				error_count = 0
+				try: 
+					for score, n in sorted(endnodes, key=lambda x:x[0]):
+						utterance = []
 						utterance.append(n.word_id)
+						# back trace
 
-					utterance = utterance[::-1]
-					utt2w = [self.voc2.get_word(u.item()) for u in utterance if u != self.SOS_token and u != self.EOS_token]
-					utterances.append(' '.join(utt2w))
+						while n.prev_node is not None:
+							n = n.prev_node
+							utterance.append(n.word_id)
 
-				decoded_batch.append(utterances)
+						utterance = utterance[::-1]
+						utt2w = [self.voc2.get_word(u.item()) for u in utterance if u != self.SOS_token and u != self.EOS_token]
+						utterances.append(' '.join(utt2w))
+
+					decoded_batch.append(utterances)
+				except ValueError as e:
+					error_count += 1
+					print(str(e))
+					print(f"error_count: {error_count}")
 
 
 			return decoded_batch
@@ -794,11 +800,25 @@ def run_validation(config, model, dataloader, disp_tok, voc1, voc2, device, logg
 		sent2s = idx_to_sents(voc2, sent2_var, no_eos= True)
 
 		refs += [[' '.join(sent2s[i])] for i in range(sent2_var.size(1))]
-		hyps += [' '.join(decoder_output[i]) for i in range(sent1_var.size(1))]
+		
+		index_error_count = 0
+		try:
+			hyps += [' '.join(decoder_output[i]) for i in range(sent1_var.size(1))]
+		except IndexError as e:
+			index_error_count += 1
+			print(f"index_error_count: {index_error_count}")
+			print(str(e))
+			hyps += ["NULL" for i in range(sent1_var.size(1))]
 
 		if config.mode == 'test':
 			sources+= data['src']
-			gen_trgs += [' '.join(decoder_output[i]) for i in range(sent1_var.size(1))]
+			try:
+				gen_trgs += [' '.join(decoder_output[i]) for i in range(sent1_var.size(1))]
+			except IndexError as e:
+                        	index_error_count += 1
+                        	print(f"index_error_count: {index_error_count}")
+                        	print(str(e))
+                        	gen_trgs += ["NULL" for i in range(sent1_var.size(1))]
 			act_trgs += [' '.join(sent2s[i]) for i in range(sent2_var.size(1))]
 			scores   += [cal_score([decoder_output[i]], [data['trg'][i]], beam_decode=config.beam_decode)[0] for i in range(sent1_var.size(1))]
 			# print(decoder_output)

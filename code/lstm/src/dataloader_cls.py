@@ -7,7 +7,40 @@ from torch.utils.data import Dataset
 import pandas as pd
 import numpy as np
 import unicodedata
+import string
 from collections import OrderedDict
+
+
+
+def tokenize_punctuation(text):
+	text = map(lambda c: ' %s ' % c if c in string.punctuation else c, text)
+	return ' '.join(''.join(text).split())
+
+
+def preprocess_sparql(query):
+	"""Do various preprocessing on the SPARQL query."""
+	# Tokenize braces.
+	query = query.replace('count(*)', 'count ( * )')
+
+	tokens = []
+	for token in query.split():
+	# Replace 'ns:' prefixes.
+		if token.startswith('ns:'):
+			token = token[3:]
+			# Replace mid prefixes.
+		if token.startswith('m.'):
+			token = 'm_' + token[2:]
+		tokens.append(token)
+
+	return ' '.join(tokens).replace('\\n', ' ')
+
+
+def get_encode_decode_pair(src, trg):
+	# Apply some simple preprocessing on the tokenizaton, which improves the
+	# performance of the models significantly.
+	encode_text = tokenize_punctuation(src)
+	decode_text = preprocess_sparql(trg)
+	return (encode_text, decode_text)
 
 class TextDataset(Dataset):
 	'''
@@ -33,6 +66,7 @@ class TextDataset(Dataset):
 			file_path = os.path.join(data_path, dataset, 'gen.tsv')
 
 		self.datatype = datatype
+		self.dataset = dataset
 
 		file_df= pd.read_csv(file_path, sep='\t')
 
@@ -59,8 +93,12 @@ class TextDataset(Dataset):
 
 	# TODO, in other datasets, we may need to generalize this function
 	def __getitem__(self, idx):
-		src = str(self.src[idx])
-		trg = str(self.trg[idx])
+		if 'cfq' in self.dataset:
+			src, trg = get_encode_decode_pair(str(self.src[idx]), str(self.trg[idx]))
+		if 'scan' in self.dataset:
+			src = self.process_string(str(self.src[idx]))
+			trg = self.process_string(str(self.trg[idx]))
+
 		labels = int(self.labels[idx])
 	
 		return {'src': src, 'trg': trg, 'labels': labels, 'idx':idx}

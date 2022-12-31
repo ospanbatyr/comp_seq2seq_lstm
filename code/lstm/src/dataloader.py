@@ -7,7 +7,41 @@ from torch.utils.data import Dataset
 import pandas as pd
 import numpy as np
 import unicodedata
+import string
 from collections import OrderedDict
+
+
+
+def tokenize_punctuation(text):
+	text = map(lambda c: ' %s ' % c if c in string.punctuation else c, text)
+	return ' '.join(''.join(text).split())
+
+
+def preprocess_sparql(query):
+	"""Do various preprocessing on the SPARQL query."""
+	# Tokenize braces.
+	query = query.replace('count(*)', 'count ( * )')
+
+	tokens = []
+	for token in query.split():
+	# Replace 'ns:' prefixes.
+		if token.startswith('ns:'):
+			token = token[3:]
+			# Replace mid prefixes.
+		if token.startswith('m.'):
+			token = 'm_' + token[2:]
+		tokens.append(token)
+
+	return ' '.join(tokens).replace('\\n', ' ')
+
+
+def get_encode_decode_pair(src, trg):
+	# Apply some simple preprocessing on the tokenizaton, which improves the
+	# performance of the models significantly.
+	encode_text = tokenize_punctuation(src)
+	decode_text = preprocess_sparql(trg)
+	return (encode_text, decode_text)
+
 
 class TextDataset(Dataset):
 	'''
@@ -24,6 +58,7 @@ class TextDataset(Dataset):
 	def __init__(self, data_path='./data/', dataset='scan', datatype='train', max_length=60, is_debug=False, to_sort=False):
 		self.datatype = datatype
 		self.dataset = dataset
+		"""
 		if "cfq" in dataset:
 			if datatype == "train":
 				ds = tfds.load('cfq/mcd1', split="train", as_supervised=True, batch_size=-1)
@@ -36,21 +71,21 @@ class TextDataset(Dataset):
 
 			self.src = ds[0].numpy().astype("str")
 			self.trg = ds[1].numpy().astype("str")
+		"""
 
-		elif "scan" in dataset:
-			if datatype=='train':
-				file_path = os.path.join(data_path, dataset, 'train.tsv')
-			elif datatype=='dev':
-				file_path = os.path.join(data_path, dataset, 'dev.tsv')
-			elif datatype=='test':
-				file_path = os.path.join(data_path, dataset, 'test.tsv')
-			else:
-				file_path = os.path.join(data_path, dataset, 'gen.tsv')
+		if datatype=='train':
+			file_path = os.path.join(data_path, dataset, 'train.tsv')
+		elif datatype=='dev':
+			file_path = os.path.join(data_path, dataset, 'dev.tsv')
+		elif datatype=='test':
+			file_path = os.path.join(data_path, dataset, 'test.tsv')
+		else:
+			file_path = os.path.join(data_path, dataset, 'gen.tsv')
 
-			file_df= pd.read_csv(file_path, sep='\t')
+		file_df= pd.read_csv(file_path, sep='\t')
 
-			self.src= file_df['Input'].values
-			self.trg= file_df['Output'].values
+		self.src= file_df['Input'].values
+		self.trg= file_df['Output'].values
 
 		if is_debug:
 			self.src= self.src[:5000:500]
@@ -74,43 +109,12 @@ class TextDataset(Dataset):
 		if 'scan' in self.dataset:
 			src = self.process_string(str(self.src[idx]))
 			trg = self.process_string(str(self.trg[idx]))
-	
+		
+		#print(f"src: {src}, trg: {trg}")
 		return {'src': src, 'trg': trg}
 
 	def curb_to_length(self, string):
 		return ' '.join(string.strip().split()[:self.max_length])
-
-
-	def tokenize_punctuation(text):
-		text = map(lambda c: ' %s ' % c if c in string.punctuation else c, text)
-		return ' '.join(''.join(text).split())
-
-
-	def preprocess_sparql(query):
-		"""Do various preprocessing on the SPARQL query."""
-		# Tokenize braces.
-		query = query.replace('count(*)', 'count ( * )')
-
-		tokens = []
-		for token in query.split():
-	  	# Replace 'ns:' prefixes.
-	  		if token.startswith('ns:'):
-	    			token = token[3:]
-	    			# Replace mid prefixes.
-	  		if token.startswith('m.'):
-	    			token = 'm_' + token[2:]
-	  		tokens.append(token)
-
-		return ' '.join(tokens).replace('\\n', ' ')
-
-
-	def get_encode_decode_pair(src, trg):
-		# Apply some simple preprocessing on the tokenizaton, which improves the
-		# performance of the models significantly.
-		encode_text = tokenize_punctuation(src)
-		decode_text = preprocess_sparql(trg)
-		return (encode_text, decode_text)
-
 
 	def process_string(self, string):
 		#string = re.sub(r"[^A-Za-z0-9(),!?\'\`]", " ", string)

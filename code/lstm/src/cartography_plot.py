@@ -8,15 +8,22 @@ import plotly.express as px
 import argparse
 
 
-def load_logits(dir_path: str):
+def load_logits(dir_path: str, epochs: int):
     file_list = os.listdir(dir_path)
-    file_list.sort()
+    output_csv_name = [f for f in file_list if os.path.splitext(f)[1] == ".csv"][-1]
+    output_csv_name = f"{dir_path}/{output_csv_name}"
+    file_list = [f for f in file_list if os.path.splitext(f)[1] == ".pt"]
+    file_list = sorted(file_list, key= lambda s: int(s.split("_")[0].replace("epoch", "")))
+    
+
+    if epochs != 1e9:
+    	file_list = [f for f in file_list if int(f.split("_")[0].replace("epoch", "")) <= epochs]
+
     print("Loading files in:", dir_path)
     labels, idxs, logits = [], [], []
-    output_csv_name = None
     for file_name in file_list:
         file_path = f"{dir_path}/{file_name}"
-        print(file_path)
+        print(file_name)
         if "idxs" in file_path:
             idxs.append(np.array(torch.load(file_path)))
         elif "logits" in file_path:
@@ -29,11 +36,10 @@ def load_logits(dir_path: str):
     #true_labels = np.zeros(np.array(labels).shape)
     
     for epoch in range(len(idxs)):
-      # print(idxs[epoch])
       logits_ordered[epoch][idxs[epoch]] = logits[epoch]
 
       # true_labels[epoch][idxs[epoch]] = labels[epoch]
-    
+
     return logits_ordered, labels, idxs, output_csv_name
 
 
@@ -106,6 +112,8 @@ def plot_old(x, y):
 
 def plot(df, path_name, extra_path_info):
 	fig = px.scatter(df, x="Variability", y="Confidence", color='Correctness')
+	fig.update_layout(yaxis_range=[0, 1])
+	fig.update_layout(xaxis_range=[0, 0.5])
 	fig.write_image(f"{path_name}/cartography_plot_{extra_path_info}.pdf")
 	
 
@@ -114,19 +122,19 @@ def main():
 
 	parser.add_argument('-logits_path', required=True, type=str)
 	parser.add_argument('-plot_path', required=True, type=str)
-	parser.add_argument('-extra_path_info', default="", type=str)
+	parser.add_argument('-epochs', default=1e9, type=int)
 	args = parser.parse_args()
 	logits_path = args.logits_path
 	plot_path = args.plot_path
-	extra_path_info = args.extra_path_info
+	epochs = args.epochs
 
-	logits, labels, idx, output_name = load_logits(logits_path)
+	logits, labels, idx, output_name = load_logits(logits_path, epochs)
 	true_labels = torch.Tensor(np.array(labels)).type(torch.int64)
 	logits = torch.Tensor(logits)
 	conf, vari = cartography(logits, true_labels)
 	crrctnss = correctness(logits, true_labels)
 	df = create_plot_dataset(output_name, conf, vari, crrctnss)
-	plot(df, plot_path, extra_path_info)
+	plot(df, plot_path, epochs)
 	
 
 if __name__ == "__main__":

@@ -28,7 +28,7 @@
 #
 #SBATCH --job-name=Tuning
 #SBATCH --nodes 1
-#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks-per-node=5
 #SBATCH --partition=ai
 #SBATCH --account=ai
 #SBATCH --qos=ai
@@ -75,5 +75,5 @@ echo
 
 # DON'T USE ADDRESS BELOW. 
 # DO USE TOKEN BELOW
-python -m src.main -mode test -project_name test_runs -pretrained_model_name SCAN_simple_split_seq2seq -finetune_data_voc none -no-dev_set -no-test_set -gen_set -dataset scan/simple_split_tsv -beam_decode -batch_size 1024 -run_name SCAN_simple_split_seq2seq_generate -gpu 0
+python -u -m src.main -mode test -project_name test_runs -pretrained_model_name scan_comp_dev -finetune_data_voc none -no-dev_set -no-test_set -gen_set -dataset scan/compositional/test -beam_decode -batch_size 1024 -run_name scan_comp_test_model_negs -gpu 0 -topk 250
 # todo change epoch

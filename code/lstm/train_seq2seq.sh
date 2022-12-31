@@ -28,7 +28,7 @@
 #
 #SBATCH --job-name=Tuning
 #SBATCH --nodes 1
-#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks-per-node=5
 #SBATCH --partition=ai
 #SBATCH --account=ai
 #SBATCH --qos=ai
@@ -55,7 +55,6 @@ echo "Loading Anaconda Module..."
 module load cuda/10.2
 module load cudnn/8.1.1/cuda-10.2
 module load anaconda/2022.5
-conda activate cartography
 
 echo "======================="
 
@@ -71,9 +70,7 @@ echo
 ################################################################################
 
 
-
-
 # DON'T USE ADDRESS BELOW. 
 # DO USE TOKEN BELOW
-python -m src.main -mode train -project_name test_runs -hidden_size 128 -depth 3 -model_selector_set val -pretrained_model_name none -finetune_data_voc none -dev_set -no-test_set -no-gen_set -dataset scan/simple_split_tsv -dev_always -no-test_always -no-gen_always -epochs 200 -save_model -show_train_acc -embedding random -no-freeze_emb -no-freeze_emb2 -no-freeze_lstm_encoder -no-freeze_lstm_decoder -no-freeze_fc -batch_size 256 -lr 0.008 -emb_lr 0.0005 -dropout 0.1 -no_beam_decode -early_stopping 50 -run_name SCAN_simple_split_seq2seq -gpu 0 -topk 1
+python -m src.main -mode train -project_name test_runs -hidden_size 512 -depth 3 -model_selector_set val -pretrained_model_name none -finetune_data_voc none -dev_set -no-test_set -no-gen_set -dataset scan/compositional/dev -dev_always -no-test_always -no-gen_always -epochs 250 -save_model -show_train_acc -embedding random -no-freeze_emb -no-freeze_emb2 -no-freeze_lstm_encoder -no-freeze_lstm_decoder -no-freeze_fc -batch_size 256 -lr 0.001 -emb_lr 0.0005 -dropout 0.1 -no_beam_decode -early_stopping 75 -run_name scan_comp_dev -gpu 0 -topk 1
 # todo change epoch

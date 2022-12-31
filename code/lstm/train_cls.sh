@@ -28,7 +28,7 @@
 #
 #SBATCH --job-name=Tuning
 #SBATCH --nodes 1
-#SBATCH --ntasks-per-node=1
+#SBATCH --ntasks-per-node=5
 #SBATCH --partition=ai
 #SBATCH --account=ai
 #SBATCH --qos=ai
@@ -54,8 +54,6 @@ echo "Loading Anaconda Module..."
 #module load anaconda/2.7
 module load cuda/10.2
 module load cudnn/8.1.1/cuda-10.2
-module load anaconda/2022.5
-conda activate cartography
 
 echo "======================="
 
@@ -70,16 +68,10 @@ echo
 ##################### !!! DO NOT EDIT ABOVE THIS LINE !!! ######################
 ################################################################################
 
-# get tunneling info
-XDG_RUNTIME_DIR=""
-port=$(shuf -i 6000-6999 -n1)
-node=$(hostname -s)
-user=$(whoami)
-
 # print tunneling instructions jupyter-log
 
-lr=0.0001
-DEPTH=6
+lr=0.001   #0.0001
+DEPTH=2
 HIDDEN=512
 
 # DON'T USE ADDRESS BELOW. 
@@ -87,6 +79,6 @@ HIDDEN=512
 
 echo "-------------------------------------------HYPERPARAMETER CONFIG---------------------------------------------------------"
 echo "DEPTH: %d HIDDEN: %d" "$DEPTH" "$HIDDEN"
-python -u -m src.main_cls -mode train -project_name SCAN_simple_split__cls -hidden_size $HIDDEN -model_selector_set val -pretrained_model_name none -finetune_data_voc none -dev_set -no-test_set -no-gen_set -dataset scan/simple_split_tsv_cls -dev_always -no-test_always -no-gen_always -epochs 10 -save_model -show_train_acc -embedding random -no-freeze_emb -no-freeze_emb2 -no-freeze_lstm_encoder -no-freeze_lstm_decoder -no-freeze_fc -batch_size 128 -lr $lr -emb_lr 0.001 -dropout 0.1 -no_beam_decode -run_name SCAN_simple_split_cls -gpu 0 -topk 1 -depth $DEPTH
+python -u -m src.main_cls -mode train -project_name scan_comp_cls -hidden_size $HIDDEN -model_selector_set val -pretrained_model_name none -finetune_data_voc none -dev_set -test_set -no-gen_set -dataset scan/compositional_cls -dev_always -no-test_always -no-gen_always -epochs 500 -save_model -show_train_acc -embedding random -no-freeze_emb -no-freeze_emb2 -no-freeze_lstm_encoder -no-freeze_lstm_decoder -no-freeze_fc -batch_size 256 -lr $lr -emb_lr 0.001 -dropout 0.4 -no_beam_decode -run_name scan_comp_cls -gpu 0 -topk 1 -depth $DEPTH
 echo "-------------------------------------------------------------------------------------------------------------------------"
 # todo change epoch
